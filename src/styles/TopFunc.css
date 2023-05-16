@@ -1,0 +1,274 @@
+@font-face {
+    font-family: 'LexendDeca';
+    src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+  
+  @media only screen and (max-width: 320px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+        font-family: 'LexendDeca', sans-serif;
+
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+
+
+  
+  }
+  
+  
+  
+  @media only screen and (min-width: 320px) {
+  
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+        font-family: 'LexendDeca', sans-serif;
+
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+
+    .weatherCondition {
+        margin-top: 2vw;
+        font-size: 6vw;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .locationCondition {
+        margin-top: 15vw;
+        font-size: 4vw;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .weatherDescription {
+        margin-top: 2vw;
+        margin-bottom: 6vw;
+        font-size: 5vw;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .temperature {
+        font-size: 25vw;
+        font-weight: 500;
+        margin-top: 1vw;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        height: 30vw;
+    }
+
+    .degrees {
+        margin-left: -1vw;
+        font-weight: 100;
+        font-size: 20vw;
+    }
+
+    .twoBoxes {
+        display: flex;
+        justify-content: center;
+        margin-top: 3vw;
+        width: 100%;
+        height: 20vw;
+    }
+
+    .boxLeft {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42vw;
+        height: 10vw;
+        border-radius: 10px;
+        margin-right: 3vw;
+        border: 2px solid #000000;
+        flex-wrap: wrap;
+
+        font-size: 5vw;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .boxRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35vw;
+        height: 10vw;
+        border-radius: 10px;
+        margin-left: 3vw;
+        border: 2px solid #000000;
+
+        font-size: 5vw;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .windSpeed {
+        margin-left: 1vw;
+        font-size: 4.5vw;
+        font-weight: 100;
+    }
+
+    .humidity {
+        margin-left: 1vw;
+        font-size: 5vw;
+        font-weight: 100;
+    }
+
+
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+      }
+    
+  
+  }
+  
+  
+  
+  
+  
+  
+  @media only screen and (min-width: 480px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+        font-family: 'LexendDeca', sans-serif;
+
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+
+    .weatherCondition {
+        margin-top: 20vw;
+        font-size: 5vw;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .temperature {
+        font-size: 25vw;
+        font-weight: 500;
+        margin-top: 1vw;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .degrees {
+        margin-left: -1vw;
+        font-weight: 100;
+        font-size: 20vw;
+    }
+
+    .twoBoxes {
+        display: flex;
+        justify-content: center;
+        margin-top: 3vw;
+        width: 100vw;
+        height: 20vw;
+    }
+
+    .boxLeft {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35vw;
+        height: 10vw;
+        border-radius: 10px;
+        margin-right: 3vw;
+        border: 2px solid #000000;
+        flex-wrap: nowrap;
+
+        font-size: 5vw;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .boxRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35vw;
+        height: 10vw;
+        border-radius: 10px;
+        margin-left: 3vw;
+        border: 2px solid #000000;
+
+        font-size: 5vw;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .windSpeed {
+        margin-left: 1vw;
+        font-size: 4.5vw;
+        font-weight: 400;
+    }
+
+    .humidity {
+        margin-left: 1vw;
+        font-size: 5vw;
+        font-weight: 400;
+    }
+
+
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+      }
+    
+  
+  }
+  
+  
+
+  
+  
+  @media only screen and (min-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+        font-family: 'LexendDeca', sans-serif;
+    }
+  
+  }
+  
+  
+  
+  
+  
+  @media only screen and (min-width: 1200px) {
+    body {
+        background-color: #333333;
+        font-family: 'LexendDeca', sans-serif;
+    }
+  
+  }

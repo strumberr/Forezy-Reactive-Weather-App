@@ -1,0 +1,388 @@
+@font-face {
+    font-family: 'LexendDeca';
+    src: url('/fonts/LexendDeca-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .wholePage {
+      width: 100vw;
+      overflow-x: hidden !important;
+      font-family: 'LexendDeca', sans-serif;
+  
+  
+  
+      user-select: none; /* Standard syntax */
+  }
+
+
+
+
+  
+  
+  .load-wrapp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+  }
+  
+  .ring-2 {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
+    margin: 0 auto;
+    border: 4px solid #EAC793;
+    border-radius: 100%;
+  }
+  
+  .ball-holder {
+      position: absolute;
+      width: 30vw;
+      height: 30vw;
+      top: 0px;
+  }
+    
+  .ball {
+      position: absolute;
+      top: -11px;
+      left: 0;
+      width: 10vw;
+      height: 10vw;
+      border-radius: 100%;
+      background: #FCAF3B;
+      box-shadow: 0px 0px 10px #ffd79a;
+  }
+  
+  
+  .load-5 .ball-holder {
+      animation: loadingE 1.3s linear infinite;
+  }
+  
+  
+  @keyframes loadingE {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  #cloud {
+      position: absolute;
+  
+  
+  
+    left: 15%;
+    right: 15;
+    bottom: 0;
+  
+    width: 70%;
+      height: 40vh;
+  
+    z-index: -4;
+  
+    -webkit-animation: mover 3.5s infinite  alternate;
+    animation: mover 3.5s infinite  alternate;
+  
+  }
+  
+  
+  
+  
+  
+  .rain {
+    position : absolute;
+    height : 60%;
+    width : 100%;
+    color: #002266;
+  }
+  
+  .drop {
+    position : absolute;
+    background : linear-gradient(#b1bfcd, #4780BB);
+    opacity : 2;
+    top : 25px;
+    border-radius : 10px;
+  }
+  
+  .d1 {
+    left : 97%;
+    width : 2%;
+    height : 5%;
+    animation : fall .94s linear 0.69s infinite;
+  }
+  
+  .d2 {
+    left : 18%;
+    width : 2%;
+    height : 5%;
+    animation : fall .98s linear 0.57s infinite;
+  }
+  .d3 {
+    left : 38%;
+    width : 2%;
+    height : 5%;
+    animation : fall .66s linear .60s infinite;
+  }
+  
+  .d4 {
+    left : 64%;
+    width : 2%;
+    height : 5%;
+    animation : fall .69s linear .76s infinite;
+  }
+  
+  .d5 {
+    left : 95%;
+    width : 2%;
+    height : 5%;
+    animation : fall .75s linear .56s infinite;
+  }
+  
+  .d6 {
+    left : 65%;
+    width : 2%;
+    height : 5%;
+    animation : fall .75s linear .92s infinite;
+  }
+  
+  .d7 {
+    left : 19%;
+    width : 2%;
+    height : 5%;
+    animation : fall .92s linear .72s infinite;
+  }
+  
+  .d8 {
+    left : 55%;
+    width : 2%;
+    height : 5%;
+    animation : fall .84s linear .99s infinite;
+  }
+  
+  .d9 {
+    left : 35%;
+    width : 2%;
+    height : 5%;
+    animation : fall .79s linear .53s infinite;
+  }
+  
+  .d10 {
+    left : 83%;
+    width : 2%;
+    height : 5%;
+    animation : fall .82s linear .97s infinite;
+  }
+  
+  .d11 {
+    left : 8%;
+    width : 2%;
+    height : 5%;
+    animation : fall .75s linear .56s infinite;
+  }
+  
+  .d12 {
+    left : 1%;
+    width : 2%;
+    height : 5%;
+    animation : fall .60s linear .59s infinite;
+  }
+  
+  .d13 {
+    left : 13%;
+    width : 2%;
+    height : 5%;
+    animation : fall .5s linear .5s infinite;
+  }
+  
+  .d14 {
+    left : 13%;
+    width : 2%;
+    height : 5%;
+    animation : fall .80s linear .63s infinite;
+  }
+  
+  .d15 {
+    left : 13%;
+    width : 2%;
+    height : 5%;
+    animation : fall .68s linear .75s infinite;
+  }
+  
+  @-webkit-keyframes fall {
+      to {margin-top:150px; opacity:0;}
+  }
+  @keyframes fall {
+      to {margin-top:150px; opacity:0;}
+  }
+  
+  @-webkit-keyframes mover {
+      0% { transform: translateY(1rem); }
+      100% { transform: translateY(2.6rem); }
+  }
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .bigBox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  
+  .animation_loading {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  
+  }
+  
+  
+  
+  .loader {
+      width: 72px;
+      height: 72px;
+      background: #FCAF3B;
+      display: block;
+      margin: 20px auto;
+      position: relative;
+      box-sizing: border-box;
+      animation: rotationBack 2s ease-in-out infinite reverse;
+    }
+    .loader::before {
+      content: '';  
+      box-sizing: border-box;
+      left: 0;
+      top: 0;
+      transform: rotate(45deg);
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      background: #FCAF3B;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    }
+    .loader::after {
+      content: '';  
+      box-sizing: border-box;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: #ffd79a;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes rotationBack {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+  
+  
+  
+  .looking_outside {
+      width: 100%;
+      color: white;
+      text-align: center;
+      margin-right: 10vw;
+      margin-left: 10vw;
+      margin-top: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .loaderBar {
+    display: block;
+    position: relative;
+    height: 12px;
+    width: 80%;
+    border: 1px solid #ffd79a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .loaderBar:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #fcaf3b;
+    animation: 6s prog ease-in forwards;
+  }
+  
+  @keyframes prog {
+    to {
+      width: 100%;
+    }
+  }
