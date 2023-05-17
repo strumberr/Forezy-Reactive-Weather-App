@@ -183,8 +183,8 @@ function App() {
         tempLat = latitude;
         tempLon = longitude;
 
-        console.log(tempLat)
-        console.log(tempLon)
+        // console.log(tempLat)
+        // console.log(tempLon)
 
 
         reverseGeocode(latitude, longitude).then((location) => {
@@ -199,14 +199,14 @@ function App() {
         } else {
           // Location already set, no need to fetch again
           setLocationLoaded(true);
-          console.log('Location already set:', locationMain);
+          // console.log('Location already set:', locationMain);
         }
 
         
 
         const runMainThing = async () => {
 
-          console.log("running main thing 1")
+          // console.log("running main thing 1")
             
           const FetchData = async () => {
 
@@ -237,7 +237,7 @@ function App() {
 
         const runMainThing2 = async () => {
 
-          console.log("running main thing 2")
+          // console.log("running main thing 2")
               
           fetch('https://api.ipify.org?format=json')
           .then(response => response.json())
@@ -256,16 +256,16 @@ function App() {
                 var longitude2 = data.longitude;
 
                 setLocationMain(data.city);
-                console.log("ip address", data.city)
-                console.log("lat", latitude2)
-                console.log("lon", longitude2)
+                // console.log("ip address", data.city)
+                // console.log("lat", latitude2)
+                // console.log("lon", longitude2)
 
                 const FetchData = async () => {
                   
                   try {
                     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude2}&lon=${longitude2}&appid=${openWeatherMapApi}&units=metric`);
                     const jsonData = await response.json();
-                    console.log("json data", jsonData)
+                    // console.log("json data", jsonData)
                     setData(jsonData);
                     setSubmitLoading(true);
 
@@ -297,10 +297,10 @@ function App() {
   }
 
 
-  console.log("location main", locationMain)
+  // console.log("location main", locationMain)
   const json_string = JSON.stringify(data, null, 2);
 
-  console.log("setIsLoading", submitLoading)
+  // console.log("setIsLoading", submitLoading)
 
   const jsonObject = JSON.parse(json_string);
 

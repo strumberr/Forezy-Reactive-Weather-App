@@ -5,7 +5,7 @@ const openWeatherMapApi = process.env.NEXT_PUBLIC_OWM_API_KEY;
 
 
 
-export function MyComponent(jsonData, weather, wind, humidity, objectsColors, description, weatherId, locationMain) {
+export function MyComponent(jsonData, weather, wind, precipprob, objectsColors, description, weatherId, locationMain) {
   
 
   
@@ -90,7 +90,7 @@ export function MyComponent(jsonData, weather, wind, humidity, objectsColors, de
           <span className="material-symbols-outlined">
           humidity_low
           </span>
-          <div className='humidity'>{humidity}%</div>
+          <div className='humidity'>{precipprob}%</div>
         </div>
       </div>
     </div>
