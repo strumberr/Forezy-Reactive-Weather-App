@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const openWeatherMapApi = process.env.REACT_APP_OWM_API_KEY;
 
-import {
-    bigSun,
-    smallSun,
-    smallSun2
-  } from './images.js';
-  
 
 export function FetchDataMain(addressMain) {
     const [data, setData] = useState(null);

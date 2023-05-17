@@ -972,16 +972,16 @@ export function LineChart(objectsColors) {
 
   //display hoursTempActualY in a list of divs
   const temperatureList = hoursTempActualY.map((temp, index) => (
-    <div className="tempDigits">
-      <div key={index}>{temp}°</div>
+    <div key={index} className="tempDigits">
+      <div>{temp}°</div>
     </div>
   ));
 
   //display hoursTempX in a list of divs
   const hoursList = hoursTempX.map((hour, index) => (
-    <div className="tempDigits">
+    <div key={index} className="tempDigits">
       {hour === "Now" ? <div style={{backgroundColor: objectsColors.objectsColors[0]}} className="now"></div> : null}
-      <div className="nowText" key={index}>{hour}</div>
+      <div className="nowText" >{hour}</div>
     </div>
   ));
 
