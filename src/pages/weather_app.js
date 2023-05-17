@@ -1,7 +1,7 @@
 // import '@/styles/weatherApp.css';
 import React, { useState, useEffect, Component, useRef } from 'react';
-import {MyComponent} from './_top_func.jsx';
-import {LineChart} from './_graphHours.jsx';
+import {MyComponent} from '@/extraFunctions/_top_func.jsx';
+import {LineChart} from '@/extraFunctions/_graphHours.jsx';
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 // import '@/styles/animationMain.scss';
 import Head from 'next/head';
