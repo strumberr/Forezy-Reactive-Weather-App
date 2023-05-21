@@ -18,7 +18,6 @@ function WeatherApi(addressLoc) {
   
 
 
-
   useEffect(() => {
       const fetchData = async () => {
       setIsLoading(true);
@@ -28,7 +27,7 @@ function WeatherApi(addressLoc) {
           const jsonData = await response.json();
           setData(jsonData);
           setIsLoading(false);
-          // console.log(jsonData)
+          //console.log(jsonData)
 
       } catch (error) {
           setError(error);

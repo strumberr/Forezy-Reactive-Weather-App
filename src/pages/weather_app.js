@@ -5,6 +5,8 @@ import {LineChart} from '@/extraFunctions/_graphHours.jsx';
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 // import '@/styles/animationMain.scss';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
 
 
 import {
@@ -85,6 +87,8 @@ async function reverseGeocode(latitude, longitude) {
 
 function App() {
 
+  const router = useRouter();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [location, setLocation] = useState("");
@@ -128,6 +132,8 @@ function App() {
   const [locationLoaded, setLocationLoaded] = useState(false);
 
   const [isClient, setIsClient] = useState(false);
+
+  
   
 
   function errorCallback() {
@@ -158,9 +164,24 @@ function App() {
     
   }
   
-
+  const [screenTooBig, setScreenTooBig] = useState(false);
 
   useEffect(() => {
+
+    const handleWindowSize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth > 480) {
+        setScreenTooBig(true);
+        router.push('/');
+      }
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleWindowSize);
+
+    // Initial check on component mount
+    handleWindowSize();
+
 
     window.document.body.style.overflowX = 'hidden';
 
@@ -923,32 +944,31 @@ function App() {
   }
 
 
+  console.log("screenTooBig: " + screenTooBig);
 
-  const WindowSizeRedirect = ({ targetPath, maxSize }) => {
-    useEffect(() => {
-      if (window.innerWidth > maxSize) {
-        window.location.href = targetPath;
-      }
-    }, [maxSize, targetPath]);
-  
-    return null;
-  };
-  
-
-
-
-
-  if (isLoading) {
+  if (screenTooBig === true) {
     return (
       <div className='bigBox'>
         <div class="animation_loading">
           <span class="loader"></span>
-          <div class="looking_outside">Please give us access to your location so we can provide the best results!1</div>
+          <div class="looking_outside">Your screen is too big!</div>
           <span class="loaderBar"></span>
         </div>
       </div>
-      
-    );
+    )
+  } else {
+    if (isLoading) {
+      return (
+        <div className='bigBox'>
+          <div class="animation_loading">
+            <span class="loader"></span>
+            <div class="looking_outside">Please give us access to your location so we can provide the best results!1</div>
+            <span class="loaderBar"></span>
+          </div>
+        </div>
+        
+      );
+    }
   }
 
   if (error) {
@@ -976,81 +996,94 @@ function App() {
     zIndex: "-1",
   }
 
-  if (userHasGiven === false) {
-    if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
-      return (
-        <div className='bigBox'>
-          <div class="animation_loading">
-            <span class="loader"></span>
-            <div class="looking_outside">Please give us access to your location so we can provide the best results!2</div>
-          </div>
-          
+  if (screenTooBig === true) {
+    return (
+      <div className='bigBox'>
+        <div class="animation_loading">
+          <span class="loader"></span>
+          <div class="looking_outside">Your screen is too big!</div>
+          <span class="loaderBar"></span>
         </div>
-      );
-    } else {
-
-      if (data === null || data === "") {
-        return (
-          <div className='bigBox'>
-            <div class="animation_loading">
-              <span class="loader"></span>
-              <div class="looking_outside">Please give us access to your location so we can provide the best results!3</div>
-            </div>
-            
-          </div>
-        );
-      } else {
-
-
-        return (
-          <div className='wholePage'>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
-            {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
-            {extraArt}
-          </div>
-        );
-
-      }
-    }
+      </div>
+    )
   } else {
-    if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
-      return (
-        <div className='bigBox'>
-          <div class="animation_loading">
-            <span class="loader"></span>
-            <div class="looking_outside">Please give us access to your location so we can provide the best results!4</div>
-          </div>
-          {/* {latitudeMain} */}
-          {/* {longitudeMain} */}
-          
-        </div>
-      );
-    } else {
 
-      if (data === null || data === "") {
+    if (userHasGiven === false) {
+      if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
         return (
           <div className='bigBox'>
             <div class="animation_loading">
               <span class="loader"></span>
-              <div class="looking_outside">Looking outside...</div>
+              <div class="looking_outside">Please give us access to your location so we can provide the best results!2</div>
             </div>
             
           </div>
         );
       } else {
 
+        if (data === null || data === "") {
+          return (
+            <div className='bigBox'>
+              <div class="animation_loading">
+                <span class="loader"></span>
+                <div class="looking_outside">Please give us access to your location so we can provide the best results!3</div>
+              </div>
+              
+            </div>
+          );
+        } else {
 
+
+          return (
+            <div className='wholePage'>
+              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+              {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
+              {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
+              {extraArt}
+            </div>
+          );
+
+        }
+      }
+    } else {
+      if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
         return (
-          <div className='wholePage'>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
-            {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
-            {extraArt}
+          <div className='bigBox'>
+            <div class="animation_loading">
+              <span class="loader"></span>
+              <div class="looking_outside">Please give us access to your location so we can provide the best results!4</div>
+            </div>
             {/* {latitudeMain} */}
             {/* {longitudeMain} */}
+            
           </div>
         );
+      } else {
+
+        if (data === null || data === "") {
+          return (
+            <div className='bigBox'>
+              <div class="animation_loading">
+                <span class="loader"></span>
+                <div class="looking_outside">Looking outside...</div>
+              </div>
+              
+            </div>
+          );
+        } else {
+
+
+          return (
+            <div className='wholePage'>
+              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+              {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
+              {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
+              {extraArt}
+              {/* {latitudeMain} */}
+              {/* {longitudeMain} */}
+            </div>
+          );
+        }
       }
     }
   }
