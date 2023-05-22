@@ -193,7 +193,7 @@
         position: absolute; 
         margin-left: auto; 
         margin-right: auto; 
-        bottom: -40vw;
+        top: 100vw;
     }
 
     .titleMobile {
