@@ -3,7 +3,11 @@
 @media only screen and (min-width: 320px) {
 
 
-
+    #__next {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
 
 
 
@@ -17,16 +21,20 @@
         justify-content: center;
         align-items: center;
 
+        
+
 
     }
 
     .menu {
         position: fixed;
-        width: 38vw;
-        height: 7vh;
+        width: 96vw;
+        height: 12vh;
         display: flex;
 
-        margin-top: 8vw;
+        top: 2vw;
+        left: 2vw;
+        right: 2vw;
 
         z-index: 5;
     }
@@ -40,23 +48,23 @@
         width: 65%;
         height: 100%;
         background-color: #EEEFFF;
-        border-radius: 300px;
-        margin-right: 1vw;
-        padding: 0.3vw;
+        border-radius: 10px;
+        margin-right: 2vw;
+        padding: 1vw;
     }
 
     .homeButton {
         width: 50%;
         height: 100%;
         background-color: #CACBFF;
-        border-radius: 200px;
+        border-radius: 8px;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
         color: #5A61FF;
-        font-size: 1vw;
+        font-size: 4vw;
         font-weight: 400;
 
         text-align: center;
@@ -77,7 +85,7 @@
         align-items: center;
 
         color: #5A61FF;
-        font-size: 1vw;
+        font-size: 4vw;
         font-weight: 400;
 
         text-align: center;
@@ -85,9 +93,6 @@
         cursor: pointer;
     }
 
-    .aboutButton:hover {
-        background-color: #CACBFF;
-    }
 
     .mobileButton {
         display: flex;
@@ -97,9 +102,9 @@
         width: 35%;
         height: 100%;
         background-color: #5A61FF;
-        border-radius: 300px;
+        border-radius: 10px;
         color: white;
-        font-size: 1vw;
+        font-size: 4vw;
         font-weight: 400;
 
         text-align: center;
@@ -107,6 +112,11 @@
         cursor: pointer;
 
         text-decoration: none;
+        
+    }
+
+    .mobileButton::after {
+        content: "open" !important;
     }
 
     .artLeft {
@@ -114,6 +124,8 @@
         width: 20vw;
         left: 0;
         top: 0;
+
+        opacity: 0;
     }
 
     .artRight {
@@ -121,6 +133,8 @@
         width: 20vw;
         right: 0;
         top: 0;
+
+        opacity: 0;
     }
 
     .elementTitleSub {
@@ -138,6 +152,8 @@
         align-items: center;
         align-content: center;
         flex-direction: column;
+
+        opacity: 0;
        
 
     }
@@ -158,6 +174,102 @@
         align-items: center;
         align-content: center;
         flex-wrap: wrap;
+
+    }
+
+    .mobileCenter {
+        opacity: 1;
+        width: 60vw;
+
+
+
+        position: absolute; 
+        margin-left: auto; 
+        margin-right: auto; 
+        bottom: 10vw;
+
+    }
+
+    .secondWholePage2 {
+        width: 100vw;
+        height: 200vh;
+        left: 0;
+        right: 0;
+        font-family: 'Lexend Deca', sans-serif;
+        user-select: none; /* Standard syntax */
+
+        position: absolute;
+        top: 0;
+
+        z-index: -20;
+        background-color: #B1B4FE;
+    }
+
+    .secondWholePage {
+        width: 100vw;
+        height: 200vh;
+        left: 0;
+        right: 0;
+        font-family: 'Lexend Deca', sans-serif;
+        user-select: none; /* Standard syntax */
+
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+
+        /* background-color: #B1B4FE; */
+
+        z-index: 1;
+    }
+
+    .secondWholePageTop {
+        width: 100%;
+        height: 30%;
+        /* border: 3px solid hsl(237, 64%, 13%); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .secondWholePageBottom {
+        width: 100%;
+        height: 70%;
+        /* border: 3px solid hsl(237, 64%, 13%); */
+        display: flex;
+ 
+        flex-direction: column;
+    }
+
+    .secondWholePageBottomTop {
+        width: 100%;
+        height: 50%;
+        /* border: 3px solid hsl(237, 64%, 13%); */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+    }
+
+    .secondWholePageBottomBottom {
+        width: 100%;
+        height: 50%;
+        /* border: 3px solid hsl(237, 64%, 13%); */
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: center;
+    }
+
+    .artLeftMobile {
+
+    }
+
+    .artRightMobile {
 
     }
 
@@ -293,39 +405,27 @@
     }
 
     .leftMobile {
-        position: absolute;
-        left: -14vw;
-        top: 40vw;
         width: 40vw;
-        z-index: 1;
     }
 
     .rightMobile {
-        position: absolute;
-        right: -14vw;
-        top: 40vw;
         width: 40vw;
-        z-index: 1;
     }
 
     .snowBack {
         position: absolute;
-        top: 100vh;
+        top: 60vh;
         left: 0;
-        right: 0;
+        width: 100vw;
+        height: 120vh;
     }
 
     .continuationPage {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 85vw;
-        margin-left: auto;
-        margin-right: auto;
-        width: 20vw;
+
+        width: 30vw;
         z-index: 1;
         text-align: center;
-        font-size: 1.5vw;
+        font-size: 4vw;
     }
 
     .futuresTempIndex {
@@ -447,7 +547,38 @@
         justify-content: center;
         align-items: center;
 
+        opacity: 1;
 
+
+    }
+
+    .mobileCenter {
+        display: none;
+        
+    }
+
+    .secondWholePage {
+        opacity: 0;
+
+        display: none;
+    }
+
+    .secondWholePageTop {
+        display: none;
+
+        display: none;
+    }
+
+    .secondWholePageBottom {
+        display: none;
+    }
+
+    .artLeftMobile {
+        display: none;
+    }
+
+    .artRightMobile {
+        display: none;
     }
 
     .menu {
@@ -456,9 +587,14 @@
         height: 7vh;
         display: flex;
 
-        margin-top: 8vw;
+        margin-top: 2vw;
 
         z-index: 5;
+        opacity: 1;
+
+        margin-left: auto;
+        margin-right: auto;
+
     }
 
     .navigateButtons {
@@ -473,6 +609,7 @@
         border-radius: 300px;
         margin-right: 1vw;
         padding: 0.3vw;
+        opacity: 1;
     }
 
     .homeButton {
@@ -492,6 +629,7 @@
         text-align: center;
 
         cursor: pointer;
+        opacity: 1;
     }
 
 
@@ -513,10 +651,12 @@
         text-align: center;
 
         cursor: pointer;
+        opacity: 1;
     }
 
     .aboutButton:hover {
         background-color: #CACBFF;
+        
     }
 
     .mobileButton {
@@ -537,6 +677,11 @@
         cursor: pointer;
 
         text-decoration: none;
+        opacity: 1;
+    }
+
+    .mobileButton::after {
+        content: "Open on mobile!" !important;
     }
 
     .artLeft {
@@ -544,6 +689,7 @@
         width: 20vw;
         left: 0;
         top: 0;
+        opacity: 1;
     }
 
     .artRight {
@@ -551,6 +697,7 @@
         width: 20vw;
         right: 0;
         top: 0;
+        opacity: 1;
     }
 
     .elementTitleSub {
@@ -569,7 +716,7 @@
         align-content: center;
         flex-direction: column;
        
-
+        opacity: 1;
     }
 
     .elementTitleSubSubber {
@@ -589,6 +736,7 @@
         align-content: center;
         flex-wrap: wrap;
 
+        opacity: 1;
     }
 
     .topHalfInfoBox {
@@ -598,6 +746,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        opacity: 1;
     }
 
     .topHalfInfoBoxHalfLeft {
@@ -608,6 +757,7 @@
         flex-direction: column;
         
         /* border: 3px solid #55edae; */
+        opacity: 1;
     }
 
     .topHalfInfoBoxHalfRight {
@@ -619,6 +769,7 @@
         align-content: center;
         flex-wrap: wrap;
         /* border: 3px solid #456d5c; */
+        opacity: 1;
     }
 
     .topHalfInfoBoxHalfLeftBottom {
@@ -630,6 +781,7 @@
         align-content: center;
         flex-wrap: wrap;
         /* border: 3px solid #55edae; */
+        opacity: 1;
     }
 
     .topHalfInfoBoxHalfLeftTop {
@@ -639,8 +791,10 @@
         justify-content: flex-start;
         align-items: flex-end;
         /* border: 3px solid #55edae; */
+        
 
         font-size: 5vw;
+        opacity: 1;
     }
 
     .temperatureMain {
@@ -654,6 +808,7 @@
         align-content: flex-start;
         flex-wrap: wrap;
         /* border: 3px solid #55edae; */
+        opacity: 1;
     }
 
     .locationText {
@@ -667,6 +822,8 @@
 
         font-size: 1.4vw;
         font-weight: 200;
+
+        opacity: 1;
     }
 
 
@@ -687,6 +844,7 @@
         align-content: center;
 
         /* border: 3px solid #55edae; */
+        opacity: 1;
         
     }
 
@@ -697,6 +855,8 @@
         color: #F6E3C2;
 
         z-index: -1;
+
+        opacity: 1;
     }
 
     .subtitleCenter {
@@ -708,6 +868,8 @@
         margin-top: 4vw;
 
         width: 30vw;
+
+        opacity: 1;
     }
 
     .centerMobile {
@@ -720,6 +882,7 @@
         width: 40vw;
         z-index: -1;
 
+        opacity: 1;
     }
 
     .leftMobile {
@@ -728,6 +891,8 @@
         top: 40vw;
         width: 40vw;
         z-index: 1;
+
+        opacity: 1;
     }
 
     .rightMobile {
@@ -736,6 +901,8 @@
         top: 40vw;
         width: 40vw;
         z-index: 1;
+
+        opacity: 1;
     }
 
     .snowBack {
@@ -743,6 +910,8 @@
         top: 100vh;
         left: 0;
         right: 0;
+
+        opacity: 1;
     }
 
     .continuationPage {
@@ -756,6 +925,8 @@
         z-index: 1;
         text-align: center;
         font-size: 1.5vw;
+
+        opacity: 1;
     }
 
     .futuresTempIndex {
@@ -767,6 +938,8 @@
         color: white;
 
         height: 100%;
+
+        opacity: 1;
     
     }
 
@@ -775,6 +948,8 @@
         width: 100%;
         display: flex;
         justify-content: center;
+
+        opacity: 1;
     }
 
 
@@ -789,6 +964,8 @@
         width: 5.5vw;
 
         flex-wrap: nowrap;
+
+        opacity: 1;
     }
 
     .dayString2 {
@@ -797,12 +974,16 @@
         font-weight: 600;
         text-align: center;
         white-space: nowrap;
+
+        opacity: 1;
     }
 
 
     .arrows2 {
         display: flex;
         flex-direction: column;
+
+        opacity: 1;
     }
 
     .iconWeather2 {
@@ -810,14 +991,20 @@
         margin-bottom: 1vw;
         height: 2vw;
         width: 2vw;
+
+        opacity: 1;
     }
 
     .arrowUp2 {
       margin-bottom: 2vw;
+
+      opacity: 1;
     }
 
     .arrowDown2 {
       margin-top: 2vw;
+
+      opacity: 1;
     }   
 
     .tempArrow2 {
@@ -825,17 +1012,23 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+
+        opacity: 1;
     }
     
     .maxTemp2 {
         width: fit-content;
         text-align: center;
         font-weight: 700;
+
+        opacity: 1;
     }
     
     .minTemp2 {
         width: fit-content;
         font-weight: 700;
+
+        opacity: 1;
     }
 }
 

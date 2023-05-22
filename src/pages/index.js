@@ -30,13 +30,19 @@ export default function Home() {
   const scale = useTransform(scrollY, [0, (typeof window !== 'undefined' && window.innerHeight) || 0], [1, 0.6]);
   const translateX = useTransform(scrollY, [0, (typeof window !== 'undefined' && window.innerHeight) || 0], [0, 200]);
   const translateXOpposite = useTransform(scrollY, [0, (typeof window !== 'undefined' && window.innerHeight) || 0], [0, -200]);
-
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleScroll = () => {
     scrollY.set(window.scrollY);
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    handleResize();
+
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
     }
@@ -48,8 +54,18 @@ export default function Home() {
     };
   }, []);
 
-  const text = "Forezy is a Web based\napp that primarily\nfocuses on delivering\nweather information in a\nfun and friendly way to\nthe user"
+  var text;
+  var text2;
+
+  if (isMobile) {
+    text = "Forezy is a\nWeb based\napp that\nprimarily\nfocuses on\ndelivering\nweather\ninformation\nin a fun and\nfriendly way\nto the user"
+    text2 = "Gone are the\ndays of dull and\nmonotonous\nweather reports.\nForezy takes a\nrefreshing\napproach by\npresenting\nweather data in\na visually\nappealing and\ninteractive\nmanner."
+  } else {
+    text = "Forezy is a Web based\napp that primarily\nfocuses on delivering\nweather information in a\nfun and friendly way to\nthe user"
+    text2 = "Gone are the\ndays of dull and\nmonotonous\nweather reports.\nForezy takes a\nrefreshing\napproach by\npresenting\nweather data in\na visually\nappealing and\ninteractive\nmanner."
+  }
   const words = text.split(" ");
+  const words2 = text2.split(" ");
   
   // Variants for Container of words.
   const container = {
@@ -59,10 +75,40 @@ export default function Home() {
       transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
     }),
   };
-
+  // Variants for Container of words.
+  const container2 = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
   // Variants for each word.
 
   const child = {
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      x: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  // Variants for each word.
+
+  const child2 = {
     visible: {
       opacity: 1,
       x: 0,
@@ -239,6 +285,106 @@ export default function Home() {
       
   ));
 
+  isMobile
+
+  const animationsPart = (
+    <div>
+      <motion.img
+          className={styles.leftMobile}
+          src={mobileLeft}
+          alt="mobile"
+          style={{ y: translateY, scale: scale, x: translateX }}
+        />
+        <motion.img
+          className={styles.rightMobile}
+          src={mobileRight}
+          alt="mobile"
+          style={{ y: translateY, scale: scale, x: translateXOpposite }}
+        />
+
+        <div className={styles.continuationPage}>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView={"visible"}
+            
+          >
+            {words.map((word, index) => (
+              <motion.span
+                variants={child}
+                style={{ marginRight: "5px" }}
+                key={index}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+        
+    </div>
+  )
+
+
+  const nonAnimationsPart = (
+    <div>
+      <div className={styles.secondWholePage2}></div>
+      <div className={styles.secondWholePage}>
+        <div className={styles.secondWholePageTop}>
+          
+        </div>
+        <div className={styles.secondWholePageBottom}>
+          <div className={styles.secondWholePageBottomTop}>
+            <img className={styles.leftMobile} src={mobileLeft} alt="mobile" />
+            <div className={styles.textWrapper}>
+              <div className={styles.continuationPage}>
+                <motion.div
+                  variants={container}
+                  initial="hidden"
+                  whileInView={"visible"}
+                  
+                >
+                  {words.map((word, index) => (
+                    <motion.span
+                      variants={child}
+                      style={{ marginRight: "5px" }}
+                      key={index}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.secondWholePageBottomBottom}>
+            <div className={styles.continuationPage}>
+              <motion.div
+                variants={container2}
+                initial="hidden"
+                whileInView={"visible"}
+                
+              >
+                {words2.map((word, index) => (
+                  <motion.span
+                    variants={child2}
+                    style={{ marginRight: "5px" }}
+                    key={index}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </div>
+            <img className={styles.rightMobile} src={mobileRight} alt="mobile" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  )
+
+
+  
 
   //-----------------------------------------------------
 
@@ -262,6 +408,7 @@ export default function Home() {
 
         <img className={styles.artLeft} src={artLeft} alt="artLeft" />
         <img className={styles.artRight} src={artRight} alt="artRight" />
+        <img className={styles.mobileCenter} src={mobileCenter} alt="mobileCenter" />
 
         <div className={styles.elementTitleSub}>
           <div style={{ borderColor: offColor }} className={styles.elementTitleSubSubber}>
@@ -296,6 +443,8 @@ export default function Home() {
           <div style={{ color: objectColor }} className={styles.subtitleCenter}>Where art effortlessly blends with friendly forecasts!</div>
         </div>
 
+
+        
     
 
         <div className={styles.menu}>
@@ -308,7 +457,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Link href="/weather_app" className={styles.mobileButton}>Open on mobile!</Link>
+          <Link href="/weather_app" className={styles.mobileButton}></Link>
         </div>
 
         <style jsx global>
@@ -319,44 +468,18 @@ export default function Home() {
           `}
         </style>
 
-
-        <motion.img
-          className={styles.leftMobile}
-          src={mobileLeft}
-          alt="mobile"
-          style={{ y: translateY, scale: scale, x: translateX }}
-        />
-
-        <motion.img
-          className={styles.rightMobile}
-          src={mobileRight}
-          alt="mobile"
-          style={{ y: translateY, scale: scale, x: translateXOpposite }}
-        />
-
         <img className={styles.snowBack} src={snowBack} alt="snow" />
+
+
         
+        {isMobile === true && (
+          <div>{nonAnimationsPart}</div>
+        )}
+        {isMobile === false && (
+          <div>{animationsPart}</div>
+        )}
 
-  
-        <div className={styles.continuationPage}>
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView={"visible"}
-            
-          >
-            {words.map((word, index) => (
-              <motion.span
-                variants={child}
-                style={{ marginRight: "5px" }}
-                key={index}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.div>
-        </div>
-
+        
 
       </div>
     )
