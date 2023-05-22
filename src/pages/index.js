@@ -330,7 +330,14 @@ export default function Home() {
       <div className={styles.secondWholePage2}></div>
       <div className={styles.secondWholePage}>
         <div className={styles.secondWholePageTop}>
-          
+          <div className={styles.titleWrapper}>
+            <div className={styles.titleMobile}>
+              forezy
+            </div>
+            <div className={styles.subtitleMobile}>
+              Where art effortlessly blends with friendly forecasts! 
+            </div>
+          </div>
         </div>
         <div className={styles.secondWholePageBottom}>
           <div className={styles.secondWholePageBottomTop}>
