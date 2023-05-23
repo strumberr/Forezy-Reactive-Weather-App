@@ -962,7 +962,7 @@ function App() {
         <div className='bigBox'>
           <div class="animation_loading">
             <span class="loader"></span>
-            <div class="looking_outside">Please give us access to your location so we can provide the best results!1</div>
+            <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
             <span class="loaderBar"></span>
           </div>
         </div>
@@ -1014,7 +1014,7 @@ function App() {
           <div className='bigBox'>
             <div class="animation_loading">
               <span class="loader"></span>
-              <div class="looking_outside">Please give us access to your location so we can provide the best results!2</div>
+              <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
             </div>
             
           </div>
@@ -1026,7 +1026,7 @@ function App() {
             <div className='bigBox'>
               <div class="animation_loading">
                 <span class="loader"></span>
-                <div class="looking_outside">Please give us access to your location so we can provide the best results!3</div>
+                <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
               </div>
               
             </div>
@@ -1051,7 +1051,7 @@ function App() {
           <div className='bigBox'>
             <div class="animation_loading">
               <span class="loader"></span>
-              <div class="looking_outside">Please give us access to your location so we can provide the best results!4</div>
+              <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
             </div>
             {/* {latitudeMain} */}
             {/* {longitudeMain} */}

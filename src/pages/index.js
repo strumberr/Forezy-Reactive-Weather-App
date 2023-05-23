@@ -464,7 +464,9 @@ export default function Home() {
             </div>
           </div>
 
-          <Link href="/weather_app" className={styles.mobileButton}></Link>
+          <Link href="/weather_app" className={styles.mobileButton}>
+            
+          </Link>
         </div>
 
         <style jsx global>
