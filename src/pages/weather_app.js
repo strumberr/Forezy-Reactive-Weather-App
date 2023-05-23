@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 
 
 
+
 import {
   bigSun,
   smallSun,
@@ -172,7 +173,7 @@ function App() {
       const screenWidth = window.innerWidth;
       if (screenWidth > 480) {
         setScreenTooBig(true);
-        router.push('/');
+        router.push('/weatherapp_desktop');
       }
     };
 

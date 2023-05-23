@@ -285,7 +285,6 @@ export default function Home() {
       
   ));
 
-  isMobile
 
   const animationsPart = (
     <div>
@@ -459,9 +458,8 @@ export default function Home() {
             <div className={styles.homeButton}>
               Home
             </div>
-            <div className={styles.aboutButton}>
-              About
-            </div>
+
+            <Link style={{ textDecoration: "none"}} className={styles.aboutButton} href="/about">About</Link>
           </div>
 
           <Link href="/weather_app" className={styles.mobileButton}>
