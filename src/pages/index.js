@@ -408,7 +408,7 @@ export default function Home() {
     return (
       <div className={styles.whole_page}>
         <Head>
-          <title>Weethy</title>
+          <title>Forezy</title>
           <meta name="description" content="Where art effortlessly blends with friendly forecasts!" />
         </Head>
 
