@@ -472,7 +472,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
     } else if (weatherId >= 701 && weatherId <= 800) {
         document.body.style.backgroundColor = "#EAC793";
-        console.log("backgroud color: " + "#EAC793");
+
         weather = "Clear";
         objectColor = "#000000"
         backgroudColor = "#FCAF3B";
@@ -697,7 +697,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
 export function iconsList(indIcon) {
 
-    console.log("iconPens: " + indIcon);
+
 
     var svgIcon = <div>beens</div>;
 
@@ -971,7 +971,7 @@ export function weatherIdReturner(weatherId) {
 
         }
     } else {
-        console.log("document is undefined")
+
     }
 
     return [weather, backgroudColor, objectColor, moreInfoBackColor, offColor];

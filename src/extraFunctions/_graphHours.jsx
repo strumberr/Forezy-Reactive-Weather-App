@@ -27,7 +27,7 @@ function WeatherApi(addressLoc) {
           const jsonData = await response.json();
           setData(jsonData);
           setIsLoading(false);
-          //console.log(jsonData)
+
 
       } catch (error) {
           setError(error);
@@ -442,7 +442,7 @@ export function LineChart(objectsColors) {
   ));
   
 
-  // console.log(detailsSpecHour2)
+
 
   const [rangeval, setRangeval] = useState(null);
   const [showElement, setShowElement] = useState(false);
@@ -493,10 +493,10 @@ export function LineChart(objectsColors) {
     icon6 = detailsSpecHour2[5][2]
     icon7 = detailsSpecHour2[6][2]
   } catch (error) {
-    // console.log(error)
+
   }
 
-  // console.log(objectsColors.objectsColors[3]);
+
 
   
 

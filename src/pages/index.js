@@ -143,7 +143,7 @@ export default function Home() {
   useEffect(() => {
     const runMainThing2 = async () => {
 
-      // console.log("running main thing 2")
+
           
       fetch('https://api.ipify.org?format=json')
       .then(response => response.json())
@@ -166,7 +166,7 @@ export default function Home() {
               try {
                 const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${tempLocation}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`);
                 const jsonData = await response.json();
-                // console.log("json data", jsonData)
+
                 setTemperature(jsonData.currentConditions.temp)
                 setVisualCrossingData(jsonData)
 
@@ -199,7 +199,7 @@ export default function Home() {
 
     
   const [weather, backgroudColor, objectColor, moreInfoBackColor, offColor] = weatherIdReturner(200)
-  console.log("weather", weather)
+
 
 
 
@@ -213,7 +213,7 @@ export default function Home() {
 
   var detailsSpecHour = [];
 
-  console.log("visualCrossingData", visualCrossingData)
+
 
   if (visualCrossingData && visualCrossingData.days) {
     for (var i = 1; i < 7; i++) {
@@ -230,7 +230,7 @@ export default function Home() {
       //indIcon = "clear-day"
       var svgIcon = iconProcessor(indIcon);
 
-      console.log("svgIcon", svgIcon)
+
 
       tempMax7.push(roundedTempMax);
       tempMin7.push(roundedTempMin);
