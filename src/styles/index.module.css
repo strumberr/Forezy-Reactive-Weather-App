@@ -197,13 +197,15 @@
     }
 
     .titleMobile {
-        font-size: 14vw;
+        font-size: 16vw;
         color: #5A61FF;
+        letter-spacing: 0.8vw;
     }
 
     .subtitleMobile {
         margin-top: 1vw;
-        width: 50vw;
+        width: 60vw;
+        font-size: 5vw;
     }
 
     .secondWholePage2 {
