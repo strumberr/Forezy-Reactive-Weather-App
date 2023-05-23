@@ -46,7 +46,7 @@ function App() {
 
                     <div className={styles.innerBox2}>
                         <div>
-                            Hey there, welcome to Forezy - where weather gets a friendly makeover! We're here to banish boring forecasts and bring a fresh, relaxed vibe to weather updates. Get ready to experience weather in a fun and laid-back way! Rest assured, our team combines real-time data and cutting-edge forecasting techniques to give you accurate and reliable information. Stay ahead of the weather game effortlessly with Forezy. Join us and embrace a new approach to weather - one that's chill, friendly, and perfect for your everyday adventures!
+                            Hey there, welcome to Forezy - where weather gets a friendly makeover! We're here to banish boring forecasts and bring a fresh, relaxed vibe to weather updates. Get ready to experience weather in a fun and laid-back way! Rest assured, our team combines real-time data and cutting-edge forecasting techniques to give you accurate and reliable information. Stay ahead of the weather game effortlessly with Forezy. Join us and embrace a new approach to weather - one that's chill, friendly, and perfect for your everyday adventures!&apos;
                         </div>
                     </div>
 
