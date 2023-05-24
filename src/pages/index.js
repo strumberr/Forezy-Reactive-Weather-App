@@ -141,60 +141,65 @@ export default function Home() {
 
 
   useEffect(() => {
-    const runMainThing2 = async () => {
+
+    if (window.innerWidth >= 767) {
+      const runMainThing2 = async () => {
 
 
-          
-      fetch('https://api.ipify.org?format=json')
-      .then(response => response.json())
-      .then(data => {
-        const ipAddress = data.ip;
-        const apiUrl = `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`;
-        console.log(apiUrl);
-  
-        fetch(apiUrl)
-          .then(response => response.json())
-          .then(data => {
             
-            var tempLocation = data.city;
-            var tempLat = data.latitude;
-            var tempLon = data.longitude;
-  
-            setCity(data.city);
-  
-            const FetchData = async () => {
+        fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          const ipAddress = data.ip;
+          const apiUrl = `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`;
+          console.log(apiUrl);
+    
+          fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
               
-              try {
-                const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${tempLocation}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`);
-                const jsonData = await response.json();
-
-                setTemperature(jsonData.currentConditions.temp)
-                setVisualCrossingData(jsonData)
-
-                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${tempLat}&lon=${tempLon}&appid=${openWeatherMapApi}&units=metric`)
-                .then(response => response.json())
-                .then(data => {
-                  setWeatherId(data.weather[0].id);
-
-                  setIsLoading(false);
-                }
-                )
-  
-              } catch (error) {
+              var tempLocation = data.city;
+              var tempLat = data.latitude;
+              var tempLon = data.longitude;
+    
+              setCity(data.city);
+    
+              const FetchData = async () => {
                 
-              }
-  
-            };
-  
-            FetchData();
+                try {
+                  const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${tempLocation}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`);
+                  const jsonData = await response.json();
 
-          })
-          .catch(error => console.error(error));
-          
-      })
-    };
-  
-    runMainThing2();
+                  setTemperature(jsonData.currentConditions.temp)
+                  setVisualCrossingData(jsonData)
+
+                  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${tempLat}&lon=${tempLon}&appid=${openWeatherMapApi}&units=metric`)
+                  .then(response => response.json())
+                  .then(data => {
+                    setWeatherId(data.weather[0].id);
+
+                    setIsLoading(false);
+                  }
+                  )
+    
+                } catch (error) {
+                  
+                }
+    
+              };
+    
+              FetchData();
+
+            })
+            .catch(error => console.error(error));
+            
+        })
+      };
+    
+      runMainThing2();
+    } else {
+      setIsLoading(false);
+    }
 
   }, [weatherId]);
 
