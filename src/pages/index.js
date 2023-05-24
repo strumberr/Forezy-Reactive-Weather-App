@@ -150,6 +150,7 @@ export default function Home() {
       .then(data => {
         const ipAddress = data.ip;
         const apiUrl = `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`;
+        console.log(apiUrl);
   
         fetch(apiUrl)
           .then(response => response.json())

@@ -344,7 +344,7 @@ function App() {
     wind = jsonObject.wind.speed;
     humidity = jsonObject.main.humidity;
     weatherId = jsonObject.weather[0].id;
-    //weatherId = 500;
+    //weatherId = 800;
     description = jsonObject.weather[0].description;
 
 
