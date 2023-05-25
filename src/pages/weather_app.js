@@ -519,10 +519,129 @@ function App() {
 
 
     } else if (weatherId >= 300 && weatherId <= 321) {
-      document.body.style.backgroundColor = "#1B1B1B";
-      weather = "Drizzle";
+      document.body.style.backgroundColor = "#054A91";
+      weather = "Rain";
       objectColor = "#ffffff"
-      backgroudColor = "#1B1B1B";
+      backgroudColor = "#054A91";
+      moreInfoBackColor = "#91BDEB";
+
+
+      const extraArtDesign = {
+        position: "absolute",
+        margin: "auto",
+        top: "0",
+        left: "0",
+        right: "0",
+        bottom: "0",
+        width: "90%",
+        height: "auto",
+        zIndex: "-1",
+      }
+      const smallSunDesign = {
+        position: "absolute",
+        margin: "auto",
+        top: "0",
+        right: "0",
+        width: "16%",
+        marginTop: "12%",
+        marginRight: "10%",
+      }
+      const smallSunDesign2 = {
+        position: "absolute",
+        margin: "auto",
+        top: "0",
+        left: "0",
+        width: "15%",
+        marginTop: "20%",
+        marginLeft: "10%",
+      }
+      
+      extraArt = (
+        <div>
+
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ delay: 4, duration: 2 }}
+            style={{ zIndex: "-4" }}
+          >
+            <div id="cloud">
+              <span className="shadow"></span>
+              <div className="rain">
+                <div className="drop d1"></div>
+                <div className="drop d2"></div>
+                <div className="drop d3"></div>
+                <div className="drop d4"></div>
+                <div className="drop d5"></div>
+                <div className="drop d6"></div>
+                <div className="drop d7"></div>
+                <div className="drop d8"></div>
+                <div className="drop d9"></div>
+                <div className="drop d10"></div>
+                <div className="drop d11"></div>
+                <div className="drop d12"></div>
+                <div className="drop d13"></div>
+                <div className="drop d14"></div>
+                <div className="drop d15"></div>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.img
+            src={bigCloud}
+            style={extraArtDesign}
+            animate={{
+              y: [-600, 0],
+              scale: [0, 1]
+
+            }}
+            transition={{
+              duration: 4,
+              //repeatType: 'reverse',
+              //repeat: Infinity,
+              smooth: true,
+              ease: "easeInOut"
+            }}
+          />
+          
+
+          <motion.img
+            src={smallDrop}
+            style={smallSunDesign}
+            animate={{
+              y: [-300, 0],
+              scale: [0, 1]
+            }}
+            transition={{
+              duration: 2,
+              delay: 2,
+              //repeatType: 'reverse',
+              //repeat: Infinity,
+              smooth: true,
+              ease: "easeInOut"
+            }}
+          />
+
+          <motion.img
+            src={smallDrop2}
+            style={smallSunDesign2}
+            animate={{
+              y: [-300, 0],
+              scale: [0, 1]
+
+            }}
+            transition={{
+              delay: 2,
+              duration: 2,
+              //repeatType: 'reverse',
+              //repeat: Infinity,
+              smooth: true,
+              ease: "easeInOut"
+            }}
+          />
+
+        </div>
+      )
 
     } else if (weatherId >= 500 && weatherId <= 531) {
       document.body.style.backgroundColor = "#054A91";
