@@ -948,6 +948,7 @@ function App() {
   if (screenTooBig === true) {
     return (
       <div className='bigBox'>
+        <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
         <div class="animation_loading">
           <span class="loader"></span>
           <div class="looking_outside">Your screen is too big!</div>
@@ -959,6 +960,7 @@ function App() {
     if (isLoading) {
       return (
         <div className='bigBox'>
+          <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
           <div class="animation_loading">
             <span class="loader"></span>
             <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
@@ -1011,6 +1013,7 @@ function App() {
       if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
         return (
           <div className='bigBox'>
+            <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
             <div class="animation_loading">
               <span class="loader"></span>
               <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
@@ -1023,6 +1026,7 @@ function App() {
         if (data === null || data === "") {
           return (
             <div className='bigBox'>
+              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
               <div class="animation_loading">
                 <span class="loader"></span>
                 <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
@@ -1035,6 +1039,7 @@ function App() {
 
           return (
             <div className='wholePage'>
+              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
               <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
               {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
               {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
@@ -1048,6 +1053,7 @@ function App() {
       if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
         return (
           <div className='bigBox'>
+            <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
             <div class="animation_loading">
               <span class="loader"></span>
               <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
@@ -1062,6 +1068,7 @@ function App() {
         if (data === null || data === "") {
           return (
             <div className='bigBox'>
+              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
               <div class="animation_loading">
                 <span class="loader"></span>
                 <div class="looking_outside">Looking outside...</div>
@@ -1074,6 +1081,7 @@ function App() {
 
           return (
             <div className='wholePage'>
+              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
               <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
               {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
               {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
