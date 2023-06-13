@@ -114,6 +114,78 @@ function App() {
 
   const [isClient, setIsClient] = useState(false);
 
+  const [installPromptEvent, setInstallPromptEvent] = useState(null);
+  const [showInstallButton, setShowInstallButton] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(true);
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault();
+      setInstallPromptEvent(event);
+      setShowInstallButton(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = () => {
+    if (installPromptEvent) {
+      installPromptEvent.prompt();
+      installPromptEvent.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('PWA installation accepted.');
+        } else {
+          console.log('PWA installation dismissed.');
+        }
+        setInstallPromptEvent(null);
+        setShowInstallButton(false);
+      });
+    } else {
+      // If PWA is already installed, force a redownload by reloading the page
+      window.location.reload();
+    }
+  };
+
+
+  const handleAddToHomeScreen = () => {
+    if ('share' in navigator) {
+      navigator.share({
+        title: 'My PWA',
+        text: 'Add this app to your home screen',
+        url: window.location.href
+      })
+        .catch(error => {
+          console.log('Error sharing:', error);
+        });
+    } else {
+      alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
+    }
+  };
+
+
+  function isIOS() {
+    if (typeof window !== 'undefined') {
+      const platform = window.navigator.platform;
+      return /iPad|iPhone|iPod/.test(platform) && !window.MSStream;
+    }
+    return false;
+  }
+  
+
+  const isIosDevice = isIOS();
+
+  console.log("isIosDevice", isIosDevice);
+
+
   function errorCallback() {
     setIsClient(true);
 
@@ -159,6 +231,14 @@ function App() {
 
     console.log("starting app");
     console.log("Hello! Here is my GitHub: https://github.com/strumberr");
+    
+    if ('geolocation' in navigator) {
+      navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+        if (result.state === 'denied') {
+          setUserHasGiven(false);
+        }
+      });
+    }
 
     navigator.geolocation.getCurrentPosition(
       function (position) {
@@ -977,8 +1057,17 @@ function App() {
           <div class="animation_loading">
             <span class="loader"></span>
             <div class="looking_outside">
-              Please give us access to your location so we can provide the best
-              results!
+            Please give us access to your location in your settings!
+            <br></br>
+            <br></br>
+            Iphone:
+            <br></br>
+            <a style={{ color: "#ADD8E6", marginRight: "5vw", marginLeft: "5vw", wordBreak: "break-all" }} href="https://support.apple.com/en-us/HT207092">https://support.apple.com/en-us/HT207092</a>
+            <br></br>
+            <br></br>
+            Android:
+            <br></br>
+            <a style={{ color: "#ADD8E6", marginRight: "5vw", marginLeft: "5vw", wordBreak: "break-all" }} href="https://support.google.com/accounts/answer/6179507?hl=en">https://support.google.com/accounts/answer/6179507?hl=en</a>
             </div>
             <span class="loaderBar"></span>
           </div>
@@ -1036,8 +1125,7 @@ function App() {
             <div class="animation_loading">
               <span class="loader"></span>
               <div class="looking_outside">
-                Please give us access to your location so we can provide the
-                best results!
+                Please give us access to your location in your settings! https://support.apple.com/en-us/HT207092
               </div>
             </div>
           </div>
@@ -1064,6 +1152,38 @@ function App() {
         } else {
           return (
             <div className="wholePage">
+
+              
+              {showAlert && (
+                <div>
+                  {isIosDevice === true &&
+                    <label>
+                      <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                      <div class="alert info">
+                        <img onClick={handleAddToHomeScreen} src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
+                        <div style={{ fontWeight: 400 }}>You can download our app here, by pressing the icon!</div>
+                        <span class="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }} className="close" onClick={handleCloseAlert}>
+                          close
+                        </span>
+                      </div>
+                    </label>
+                    
+                  } 
+                  {isIosDevice === false &&
+                    <label>
+                      <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                      <div class="alert info">
+                        <img onClick={handleInstallClick} src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
+                        <div style={{ fontWeight: 400 }}>You can download our app here, by pressing the icon!</div>
+                        <span className="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }} onClick={handleCloseAlert}>
+                          close
+                        </span>
+                      </div>
+                    </label>
+                  }
+                </div>
+              )}
+
               <link rel="manifest" href="/manifest.json"></link>
               <link
                 rel="icon"
@@ -1143,6 +1263,49 @@ function App() {
         } else {
           return (
             <div className="wholePage">
+              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+              <label>
+                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                <div class="alert info">
+                  <img src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
+                  <div>You can download our app here, by pressing the icon!</div>
+                  <span className="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }}>
+                    close
+                  </span>
+                </div>
+              </label>
+
+              {showAlert && (
+                <div>
+                  {isIosDevice === true &&
+                    <label>
+                      <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                      <div class="alert info">
+                        <img onClick={handleAddToHomeScreen} src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
+                        <div style={{ fontWeight: 400 }}>You can download our app here, by pressing the icon!</div>
+                        <span class="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }} className="close" onClick={handleCloseAlert}>
+                          close
+                        </span>
+                      </div>
+                    </label>
+                    
+                  } 
+                  {isIosDevice === false &&
+                    <label>
+                      <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+                      <div class="alert info">
+                        <img onClick={handleInstallClick} src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
+                        <div style={{ fontWeight: 400 }}>You can download our app here, by pressing the icon!</div>
+                        <span className="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }} onClick={handleCloseAlert}>
+                          close
+                        </span>
+                      </div>
+                    </label>
+                  }
+                </div>
+              )}
+
               <link rel="manifest" href="/manifest.json"></link>
               <link
                 rel="icon"
