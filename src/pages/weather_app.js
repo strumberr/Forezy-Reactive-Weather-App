@@ -157,18 +157,7 @@ function App() {
 
 
   const handleAddToHomeScreen = () => {
-    if ('share' in navigator) {
-      navigator.share({
-        title: 'My PWA',
-        text: 'Add this app to your home screen',
-        url: window.location.href
-      })
-        .catch(error => {
-          console.log('Error sharing:', error);
-        });
-    } else {
-      alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
-    }
+    alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
   };
 
 
@@ -1265,16 +1254,6 @@ function App() {
             <div className="wholePage">
               <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-              <label>
-                <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-                <div class="alert info">
-                  <img src="assets/other/Group 100.png" alt="Logo" className="appIcon"/>
-                  <div>You can download our app here, by pressing the icon!</div>
-                  <span className="material-symbols-outlined" style={{ color: "black", marginRight: "3vw" }}>
-                    close
-                  </span>
-                </div>
-              </label>
 
               {showAlert && (
                 <div>
