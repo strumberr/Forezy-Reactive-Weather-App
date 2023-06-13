@@ -1137,6 +1137,7 @@ function App() {
               <div class="looking_outside">
                 Please give us access to your location in your settings! https://support.apple.com/en-us/HT207092
               </div>
+              1
             </div>
           </div>
         );
@@ -1156,6 +1157,7 @@ function App() {
                   Please give us access to your location so we can provide the
                   best results!
                 </div>
+                2
               </div>
             </div>
           );
@@ -1249,6 +1251,7 @@ function App() {
                 Please give us access to your location so we can provide the
                 best results!
               </div>
+              3
             </div>
             {/* {latitudeMain} */}
             {/* {longitudeMain} */}
@@ -1268,6 +1271,7 @@ function App() {
                 <span class="loader"></span>
                 <div class="looking_outside">Looking outside...</div>
               </div>
+              4
             </div>
           );
         } else {
