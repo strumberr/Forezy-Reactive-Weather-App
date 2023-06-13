@@ -4,12 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { iconsList } from "./_animationsMain.jsx"
 
-const visualCrossingApKeys = [process.env.NEXT_PUBLIC_VAPI_KEY1, process.env.NEXT_PUBLIC_VAPI_KEY2, process.env.NEXT_PUBLIC_VAPI_KEY3];
-
-const randomVisualCrossingApKeys = visualCrossingApKeys[Math.floor(Math.random() * visualCrossingApKeys.length)];
-
-const openWeatherMapApi = process.env.NEXT_PUBLIC_OWM_API_KEY;
-
 
 function WeatherApi(addressLoc) {
   const [data, setData] = useState(null);
@@ -23,7 +17,7 @@ function WeatherApi(addressLoc) {
       setIsLoading(true);
 
       try {
-          const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${addressLoc}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`);
+          const response = await fetch(`/api/api4?ipAddress=${addressLoc}`);
           const jsonData = await response.json();
           setData(jsonData);
           setIsLoading(false);
@@ -54,8 +48,8 @@ function WeatherApi(addressLoc) {
 
 
 
-  var hoursTempX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 3];
-  var hoursTempXGraphVer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+  var hoursTempX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5];
+  var hoursTempXGraphVer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
   var hoursTempActualY = [];
   var tempMax7 = [];
   var tempMin7 = [];
@@ -90,7 +84,7 @@ function WeatherApi(addressLoc) {
       }
 
       //for loop first 3 hours of the next day and push to hoursTempY
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 5; i++) {
           var hoursTemp = jsonObject.days[1].hours[i].temp;
           var parsedHoursTemp = parseFloat(hoursTemp);
           var roundedHoursTemp = Math.round(parsedHoursTemp);

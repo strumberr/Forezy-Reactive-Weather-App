@@ -16,12 +16,6 @@ const mobileRight = `${clearAssetsPath}mobileRight.png`;
 const snowBack = `${clearAssetsPath}snowBack.png`;
 
 
-const openWeatherMapApi = process.env.NEXT_PUBLIC_OWM_API_KEY;
-const geoapifyApi = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY;
-const ipDataApi = process.env.NEXT_PUBLIC_IPDATA_API_KEY;
-const visualCrossingApKeys = [process.env.NEXT_PUBLIC_VAPI_KEY1, process.env.NEXT_PUBLIC_VAPI_KEY2, process.env.NEXT_PUBLIC_VAPI_KEY3];
-const randomVisualCrossingApKeys = visualCrossingApKeys[Math.floor(Math.random() * visualCrossingApKeys.length)];
-
 
 
 export default function Home() {
@@ -152,8 +146,8 @@ export default function Home() {
         .then(response => response.json())
         .then(data => {
           const ipAddress = data.ip;
-          const apiUrl = `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`;
-    
+          const apiUrl = `/api/api3?ipAddress=${ipAddress}`;
+          
           fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
@@ -167,13 +161,13 @@ export default function Home() {
               const FetchData = async () => {
                 
                 try {
-                  const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${tempLocation}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`);
+                  const response = await fetch(`/api/api4?tempLocation=${tempLocation}`);
                   const jsonData = await response.json();
 
                   setTemperature(jsonData.currentConditions.temp)
                   setVisualCrossingData(jsonData)
 
-                  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${tempLat}&lon=${tempLon}&appid=${openWeatherMapApi}&units=metric`)
+                  fetch(`/api/api1?tempLat=${tempLat}&tempLon=${tempLon}`)
                   .then(response => response.json())
                   .then(data => {
                     setWeatherId(data.weather[0].id);

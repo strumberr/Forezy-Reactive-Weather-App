@@ -119,11 +119,32 @@ function App() {
 
   const [showAlert, setShowAlert] = useState(true);
 
+
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
 
   useEffect(() => {
+    // Check if the app is running in a PWA
+    if (window.matchMedia("(display-mode: fullscreen)").matches) {
+      setShowAlert(false);
+    } else {
+      // Listen for the beforeinstallprompt event
+      const handleBeforeInstallPrompt = (event) => {
+        // Prevent the default app installation prompt
+        event.preventDefault();
+        // Hide the alert
+        setShowAlert(false);
+      };
+
+      window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+      // Clean up the event listener
+      return () => {
+        window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      };
+    }
+
     const handleBeforeInstallPrompt = (event) => {
       event.preventDefault();
       setInstallPromptEvent(event);

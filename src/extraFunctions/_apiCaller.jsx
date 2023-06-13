@@ -20,12 +20,12 @@ export function FetchDataMain(addressMain) {
     var addressGreat;
 
     
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(addressMain)}&limit=1&appid=${openWeatherMapApi}`)
+    fetch(`/api/api5?tempAddress=${addressMain}`)
         .then(response => response.json())
         .then(data => {
             const { lat, lon } = data[0];
 
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherMapApi}&units=metric`)
+            fetch(`/api/api1?tempLat=${lat}&tempLon=${lon}`)
                 .then (response => response.json())
                 .then(data => {
                     
@@ -96,21 +96,6 @@ export function FetchDataMain(addressMain) {
 
 
 
-function getLatLon(address) {
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(address)}&limit=1&appid=${openWeatherMapApi}`)
-        .then(response => response.json())
-        .then(data => {
-            const { lat, lon } = data[0];
-
-            return {
-                "lat": lat,
-                "lon": lon
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
 
 
 
@@ -120,7 +105,7 @@ function GetLatLonMain(address) {
     const [data, setData] = useState(null);
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(address)}&limit=1&appid=${openWeatherMapApi}`)
+            fetch(`/api/api5?tempAddress=${address}`)
             .then(response => response.json())
             .then(data => {
                 const { lat, lon } = data[0];
@@ -158,7 +143,7 @@ export function FetchDataWithDelay(delayTime, address) {
 
         setTimeout(() => {
         
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherMapApi}&units=metric`)
+            fetch(`/api/api1?tempLat=${lat}&tempLon=${lon}`)
                 .then(response => response.json())
                 .then(data => resolve(data))
 
