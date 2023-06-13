@@ -15,11 +15,10 @@
     ],
     "id": "/weather_app",
     "start_url": "/weather_app",
-    "background_color": "#E4C899",
-    "display_override": ["fullscreen", "standalone"],
-    "display": "minimal-ui",
+    "background_color": "#000000",
+    "display": "fullscreen",
     "scope": "/weather_app",
-    "theme_color": "#E4C899",
+    "theme_color": "#000000",
     
     "description": "Gone are the days of dull and monotonous weather reports. Weethy takes a refreshing approach by presenting weather data in a visually appealing and interactive manner",
     "screenshots": [
