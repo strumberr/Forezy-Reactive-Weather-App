@@ -399,7 +399,9 @@ export default function Home() {
 
   if (isLoading === true) {
     return (
+      
       <div className='bigBox'>
+        <link rel="manifest" href="/manifest.json"></link>
         <div class="animation_loading">
           <span class="loader"></span>
           <div class="looking_outside">Looking Outside...</div>
@@ -410,6 +412,7 @@ export default function Home() {
   } else {
     return (
       <div className={styles.whole_page}>
+        <link rel="manifest" href="/manifest.json"></link>
         <Head>
           <title>Forezy</title>
           <meta name="description" content="Where art effortlessly blends with friendly forecasts!" />

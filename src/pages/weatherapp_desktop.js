@@ -24,6 +24,7 @@ function App() {
 
     return (
         <div className={styles.whole_page} style={{ backgroundColor: '#B1B4FE' }}>
+            <link rel="manifest" href="/manifest.json"></link>
 
             {isLoading ? (
                 <div>Loading...</div>

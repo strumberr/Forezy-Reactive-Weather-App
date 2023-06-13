@@ -1,14 +1,11 @@
 // import '@/styles/weatherApp.css';
-import React, { useState, useEffect, Component, useRef } from 'react';
-import {MyComponent} from '@/extraFunctions/_top_func.jsx';
-import {LineChart} from '@/extraFunctions/_graphHours.jsx';
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import React, { useState, useEffect, Component, useRef } from "react";
+import { MyComponent } from "@/extraFunctions/_top_func.jsx";
+import { LineChart } from "@/extraFunctions/_graphHours.jsx";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 // import '@/styles/animationMain.scss';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-
-
-
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 import {
   bigSun,
@@ -24,14 +21,19 @@ import {
   smallSnow,
   smallSnow2,
   snowGround,
-  bigThunder, 
+  bigThunder,
   smallThunder,
-  smallThunder2
-} from '/public/_images.jsx';
+  smallThunder2,
+} from "/public/_images.jsx";
+
 
 // const inter = Inter({ subsets: ['latin'] })
 
-const visualCrossingApKeys = [process.env.NEXT_PUBLIC_VAPI_KEY1, process.env.NEXT_PUBLIC_VAPI_KEY2, process.env.NEXT_PUBLIC_VAPI_KEY3];
+const visualCrossingApKeys = [
+  process.env.NEXT_PUBLIC_VAPI_KEY1,
+  process.env.NEXT_PUBLIC_VAPI_KEY2,
+  process.env.NEXT_PUBLIC_VAPI_KEY3,
+];
 
 const openWeatherMapApi = process.env.NEXT_PUBLIC_OWM_API_KEY;
 
@@ -41,38 +43,29 @@ const ipDataApi = process.env.NEXT_PUBLIC_IPDATA_API_KEY;
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-
-
-
 function GetLocPrec() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       const latitude = position.coords.latitude + 0.1;
       const longitude = position.coords.longitude + 0.1;
       setLatitude(latitude);
       setLongitude(longitude);
-
     });
   }, []);
 
   return [latitude, longitude];
 }
 
-
-
-
-
-
 async function reverseGeocode(latitude, longitude) {
   try {
-    const response = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${geoapifyApi}`);
+    const response = await fetch(
+      `/api/api2?tempLat=${latitude}&tempLon=${longitude}`
+    );
     const data = await response.json();
     const location = data.features[0].properties.city;
-
-
 
     return location;
   } catch (error) {
@@ -80,29 +73,20 @@ async function reverseGeocode(latitude, longitude) {
   }
 }
 
-
-
-
-
-
-
 function App() {
-
   const router = useRouter();
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [location, setLocation] = useState("");
   const [locationMain, setLocationMain] = useState(null);
   const [locationFirst, setLocationFirst] = useState(false);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // set initial background color
-
-  
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF"); // set initial background color
 
   const [latitudeMain, setLatitudeMain] = useState(0);
   const [longitudeMain, setLongitudeMain] = useState(0);
@@ -112,9 +96,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
   const [latitudeGeo, longitudeGeo] = GetLocPrec();
-
 
   const [locationPermission, setLocationPermission] = useState(false);
 
@@ -126,78 +108,66 @@ function App() {
 
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const [userHasGiven, setUserHasGiven] = useState(false)
-
-
+  const [userHasGiven, setUserHasGiven] = useState(false);
 
   const [locationLoaded, setLocationLoaded] = useState(false);
 
   const [isClient, setIsClient] = useState(false);
 
-  
-  
-
   function errorCallback() {
     setIsClient(true);
 
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        const latitude = position.coords.latitude + 0.01;
-        const longitude = position.coords.longitude + 0.01;
-        setLatitudeMain(latitude);
-        setLongitudeMain(longitude);
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const latitude = position.coords.latitude + 0.01;
+      const longitude = position.coords.longitude + 0.01;
+      setLatitudeMain(latitude);
+      setLongitudeMain(longitude);
 
-        setUserHasGiven(true)
+      setUserHasGiven(true);
 
-        setTempLatLoad(latitude);
-        setTempLonLoad(longitude);
+      setTempLatLoad(latitude);
+      setTempLonLoad(longitude);
 
-        tempLat = latitude;
-        tempLon = longitude;
+      tempLat = latitude;
+      tempLon = longitude;
 
-
-        reverseGeocode(latitude, longitude).then((location) => {
-          setLocationMain(location);
-          document.title = "Weather In " + location;
-        }
-        );
+      reverseGeocode(latitude, longitude).then((location) => {
+        setLocationMain(location);
+        document.title = "Weather In " + location;
       });
-    
+    });
   }
-  
+
   const [screenTooBig, setScreenTooBig] = useState(false);
 
   useEffect(() => {
-
     const handleWindowSize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth > 480) {
         setScreenTooBig(true);
-        router.push('/weatherapp_desktop');
+        router.push("/weatherapp_desktop");
       }
     };
 
     // Add event listener for window resize
-    window.addEventListener('resize', handleWindowSize);
+    window.addEventListener("resize", handleWindowSize);
 
     // Initial check on component mount
     handleWindowSize();
 
+    window.document.body.style.overflowX = "hidden";
 
-    window.document.body.style.overflowX = 'hidden';
-
-    
-    console.log("starting app")
-    console.log("Hello! Here is my GitHub: https://github.com/strumberr")
+    console.log("starting app");
+    console.log("Hello! Here is my GitHub: https://github.com/strumberr");
 
     navigator.geolocation.getCurrentPosition(
-      function(position) {
+      function (position) {
         const latitude = position.coords.latitude + 0.01;
         const longitude = position.coords.longitude + 0.01;
         setLatitudeMain(latitude);
         setLongitudeMain(longitude);
 
-        setUserHasGiven(true)
+        setUserHasGiven(true);
 
         setTempLatLoad(latitude);
         setTempLonLoad(longitude);
@@ -205,43 +175,34 @@ function App() {
         tempLat = latitude;
         tempLon = longitude;
 
-
-
-
-
         reverseGeocode(latitude, longitude).then((location) => {
           setLocationMain(location);
           document.title = "Weather In " + location;
-        }
-        );
+        });
 
-        if (locationMain === null || locationMain === undefined || locationMain === "") {
+        if (
+          locationMain === null ||
+          locationMain === undefined ||
+          locationMain === ""
+        ) {
           setLocationLoaded(false);
           errorCallback();
         } else {
           // Location already set, no need to fetch again
           setLocationLoaded(true);
-
         }
 
-        
-
         const runMainThing = async () => {
-
-            
           const FetchData = async () => {
-
-                
             try {
-              const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${tempLat}&lon=${tempLon}&appid=${openWeatherMapApi}&units=metric`);
+              const response = await fetch(
+                `/api/api1?tempLat=${tempLat}&tempLon=${tempLon}`
+              );
               const jsonData = await response.json();
               setData(jsonData);
               setSubmitLoading(true);
-              
-
             } catch (error) {
               setError(error);
-              
             }
 
             setIsLoading(false);
@@ -252,75 +213,62 @@ function App() {
 
         runMainThing();
       },
-      function(error) {
-
-        setUserHasGiven(false)
+      function (error) {
+        setUserHasGiven(false);
 
         const runMainThing2 = async () => {
+          fetch("https://api.ipify.org?format=json")
+            .then((response) => response.json())
+            .then((data) => {
+              const ipAddress = data.ip;
 
-              
-          fetch('https://api.ipify.org?format=json')
-          .then(response => response.json())
-          .then(data => {
-            const ipAddress = data.ip;
+              const apiUrl = `/api/api3?ipAddress=${ipAddress}`;
 
-            
-            const apiUrl = `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`;
+              fetch(apiUrl)
+                .then((response) => response.json())
+                .then((data) => {
+                  const country = data.country_name;
+                  var latitude2 = data.latitude;
+                  var longitude2 = data.longitude;
 
-            fetch(apiUrl)
-              .then(response => response.json())
-              .then(data => {
-                
-                const country = data.country_name;
-                var latitude2 = data.latitude;
-                var longitude2 = data.longitude;
+                  setLocationMain(data.city);
 
-                setLocationMain(data.city);
+                  const FetchData = async () => {
+                    try {
+                      const response = await fetch(
+                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude2}&lon=${longitude2}&appid=${openWeatherMapApi}&units=metric`
+                      );
+                      const jsonData = await response.json();
 
+                      setData(jsonData);
+                      setSubmitLoading(true);
+                    } catch (error) {
+                      setError(error);
+                    }
 
+                    setIsLoading(false);
+                  };
 
-
-                const FetchData = async () => {
-                  
-                  try {
-                    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude2}&lon=${longitude2}&appid=${openWeatherMapApi}&units=metric`);
-                    const jsonData = await response.json();
-
-                    setData(jsonData);
-                    setSubmitLoading(true);
-
-                  } catch (error) {
-                    setError(error);
-                    
-                  }
-
-                  setIsLoading(false);
-                };
-
-                FetchData();
-
-              })
-              .catch(error => console.error(error));
-              
-          })
+                  FetchData();
+                })
+                .catch((error) => console.error(error));
+            });
         };
 
         runMainThing2();
       }
     );
-
   }, [locationMain, submitLoading, tempLatLoad, locationLoaded]);
 
-
-  if (locationMain === null || locationMain === undefined || locationMain === "") {
+  if (
+    locationMain === null ||
+    locationMain === undefined ||
+    locationMain === ""
+  ) {
     setLocationMain("Couldn't find location");
   }
 
-
-
   const json_string = JSON.stringify(data, null, 2);
-
-
 
   const jsonObject = JSON.parse(json_string);
 
@@ -332,13 +280,11 @@ function App() {
   var weatherSecondary;
   var backgroudColor;
 
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll();
 
-  
   //test
 
   if (jsonObject && jsonObject.weather) {
-
     var weather = jsonObject.weather[0].main;
     weather = weather.toString();
     wind = jsonObject.wind.speed;
@@ -347,16 +293,14 @@ function App() {
     //weatherId = 800;
     description = jsonObject.weather[0].description;
 
-
     var objectColor;
     var extraArt;
     var moreInfoBackColor;
-  
 
     if (weatherId >= 200 && weatherId <= 232) {
       document.body.style.backgroundColor = "#324D68";
       weather = "Thunderstorm";
-      objectColor = "#ffffff"
+      objectColor = "#ffffff";
       backgroudColor = "#324D68";
       moreInfoBackColor = "#ACC5DE";
 
@@ -387,8 +331,7 @@ function App() {
               <div class="drop d15"></div>
             </div>
           </div>
-        )
-
+        );
       }
 
       const extraArtDesign = {
@@ -401,7 +344,7 @@ function App() {
         width: "90%",
         height: "auto",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -411,7 +354,7 @@ function App() {
         marginTop: "12%",
         marginRight: "10%",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -421,11 +364,10 @@ function App() {
         marginTop: "28%",
         marginLeft: "10%",
         zIndex: "-1",
-      }
-      
+      };
+
       extraArt = (
         <div>
-
           {rainAnimation}
 
           <motion.div
@@ -456,14 +398,12 @@ function App() {
             </div>
           </motion.div>
 
-          
           <motion.img
             src={bigThunder}
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               duration: 4,
@@ -471,17 +411,16 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
-          
 
           <motion.img
             src={smallThunder}
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
+              scale: [0, 1],
             }}
             transition={{
               duration: 2,
@@ -490,7 +429,7 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
 
@@ -499,8 +438,7 @@ function App() {
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               delay: 2.5,
@@ -509,22 +447,17 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
-
         </div>
-      )
-
-
-
+      );
     } else if (weatherId >= 300 && weatherId <= 321) {
       document.body.style.backgroundColor = "#054A91";
       weather = "Rain";
-      objectColor = "#ffffff"
+      objectColor = "#ffffff";
       backgroudColor = "#054A91";
       moreInfoBackColor = "#91BDEB";
-
 
       const extraArtDesign = {
         position: "absolute",
@@ -536,7 +469,7 @@ function App() {
         width: "90%",
         height: "auto",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -545,7 +478,7 @@ function App() {
         width: "16%",
         marginTop: "12%",
         marginRight: "10%",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -554,11 +487,10 @@ function App() {
         width: "15%",
         marginTop: "20%",
         marginLeft: "10%",
-      }
-      
+      };
+
       extraArt = (
         <div>
-
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -586,31 +518,29 @@ function App() {
               </div>
             </div>
           </motion.div>
-          
+
           <motion.img
             src={bigCloud}
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               duration: 4,
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
-          
 
           <motion.img
             src={smallDrop}
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
+              scale: [0, 1],
             }}
             transition={{
               duration: 2,
@@ -618,7 +548,7 @@ function App() {
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
 
@@ -627,8 +557,7 @@ function App() {
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               delay: 2,
@@ -636,20 +565,17 @@ function App() {
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
-
         </div>
-      )
-
+      );
     } else if (weatherId >= 500 && weatherId <= 531) {
       document.body.style.backgroundColor = "#054A91";
       weather = "Rain";
-      objectColor = "#ffffff"
+      objectColor = "#ffffff";
       backgroudColor = "#054A91";
       moreInfoBackColor = "#91BDEB";
-
 
       const extraArtDesign = {
         position: "absolute",
@@ -661,7 +587,7 @@ function App() {
         width: "90%",
         height: "auto",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -670,7 +596,7 @@ function App() {
         width: "16%",
         marginTop: "12%",
         marginRight: "10%",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -679,11 +605,10 @@ function App() {
         width: "15%",
         marginTop: "20%",
         marginLeft: "10%",
-      }
-      
+      };
+
       extraArt = (
         <div>
-
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -711,31 +636,29 @@ function App() {
               </div>
             </div>
           </motion.div>
-          
+
           <motion.img
             src={bigCloud}
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               duration: 4,
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
-          
 
           <motion.img
             src={smallDrop}
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
+              scale: [0, 1],
             }}
             transition={{
               duration: 2,
@@ -743,7 +666,7 @@ function App() {
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
 
@@ -752,8 +675,7 @@ function App() {
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               delay: 2,
@@ -761,21 +683,17 @@ function App() {
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
-
         </div>
-      )
-
-
-    } else if (weatherId >= 600 && weatherId <= 622) {  
+      );
+    } else if (weatherId >= 600 && weatherId <= 622) {
       document.body.style.backgroundColor = "#69ABEE";
       weather = "Snow";
-      objectColor = "#000000"
+      objectColor = "#000000";
       backgroudColor = "#69ABEE";
       moreInfoBackColor = "#B6DAFF";
-
 
       const extraArtDesign = {
         position: "absolute",
@@ -787,7 +705,7 @@ function App() {
         height: "auto",
         zIndex: "-1",
         marginRight: "6%",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -796,7 +714,7 @@ function App() {
         width: "20%",
         marginTop: "12%",
         marginRight: "10%",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -805,7 +723,7 @@ function App() {
         width: "12%",
         marginTop: "50%",
         marginLeft: "10%",
-      }
+      };
 
       const snowBottom = {
         position: "fixed",
@@ -815,17 +733,17 @@ function App() {
         width: "100%",
         marginRight: "auto",
         marginLeft: "auto",
-      }
+      };
 
       extraArt = (
         <div>
           <div class="wrapper">
-              <div class="snow layer1 a"></div>
-              <div class="snow layer1"></div> 
-              <div class="snow layer2 a"></div>
-              <div class="snow layer2"></div>
-              <div class="snow layer3 a"></div>
-              <div class="snow layer3"></div>
+            <div class="snow layer1 a"></div>
+            <div class="snow layer1"></div>
+            <div class="snow layer2 a"></div>
+            <div class="snow layer2"></div>
+            <div class="snow layer3 a"></div>
+            <div class="snow layer3"></div>
           </div>
 
           <img src={snowGround} alt="artPart" style={snowBottom}></img>
@@ -836,8 +754,7 @@ function App() {
             animate={{
               y: [-400, 0],
               scale: [0.8, 1],
-              rotate: [0, 360]
-
+              rotate: [0, 360],
             }}
             transition={{
               duration: 2,
@@ -845,7 +762,7 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
 
@@ -855,7 +772,7 @@ function App() {
             animate={{
               y: [-300, 0],
               scale: [0.8, 1],
-              rotate: [0, 360]
+              rotate: [0, 360],
             }}
             transition={{
               duration: 2,
@@ -864,7 +781,7 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
 
@@ -874,8 +791,7 @@ function App() {
             animate={{
               y: [-300, 0],
               scale: [0.8, 1],
-              rotate: [0, 360]
-
+              rotate: [0, 360],
             }}
             transition={{
               delay: 2,
@@ -884,19 +800,16 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
           />
-
         </div>
-      )
-
-
+      );
     } else if (weatherId >= 701 && weatherId <= 800) {
       document.body.style.backgroundColor = "#EAC793";
 
       weather = "Clear";
-      objectColor = "#000000"
+      objectColor = "#000000";
       backgroudColor = "#FCAF3B";
       moreInfoBackColor = "#F9E9D0";
 
@@ -909,7 +822,7 @@ function App() {
         marginRight: "auto",
         marginLeft: "auto",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -919,7 +832,7 @@ function App() {
         marginTop: "6%",
         marginRight: "10%",
         zIndex: "-2",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -929,40 +842,33 @@ function App() {
         marginTop: "12%",
         marginLeft: "10%",
         zIndex: "-2",
-      }
-      
-      
+      };
+
       extraArt = (
         <div>
-    
           <motion.img
             src={bigSun}
             style={extraArtDesign}
             animate={{
               y: [300, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               duration: 2,
               //repeatType: 'reverse',
               //repeat: Infinity,
               smooth: true,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         </div>
-      )
-
+      );
     } else if (weatherId >= 801 && weatherId <= 804) {
       document.body.style.backgroundColor = "#054A91";
       weather = "Clouds";
-      objectColor = "#ffffff"
+      objectColor = "#ffffff";
       backgroudColor = "#054A91";
       moreInfoBackColor = "#91BDEB";
-
-
-
 
       const extraArtDesign = {
         position: "absolute",
@@ -974,7 +880,7 @@ function App() {
         width: "90%",
         height: "auto",
         zIndex: "-1",
-      }
+      };
       const smallSunDesign = {
         position: "absolute",
         margin: "auto",
@@ -983,7 +889,7 @@ function App() {
         width: "20%",
         marginTop: "12%",
         marginRight: "10%",
-      }
+      };
       const smallSunDesign2 = {
         position: "absolute",
         margin: "auto",
@@ -992,23 +898,20 @@ function App() {
         width: "20%",
         marginTop: "18%",
         marginLeft: "10%",
-      }
+      };
 
       const smallCloudDesign = (
-        <img src={smallCloud} style={{position: "absolute"}}></img>
-      )
+        <img src={smallCloud} style={{ position: "absolute" }}></img>
+      );
 
-      
       extraArt = (
         <div>
-
           <motion.img
             src={"./assets/cloudy/bigCloud.png"}
             style={extraArtDesign}
             animate={{
               y: [300, 0],
-              scale: [0, 1]
-
+              scale: [0, 1],
             }}
             transition={{
               duration: 3,
@@ -1016,20 +919,15 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeInOut",
-              type: "spring"
+              type: "spring",
             }}
-
-            
           />
-
-    
 
           <motion.img
             src={smallCloud2}
             style={smallSunDesign2}
             animate={{
               x: [-200, 0],
-
             }}
             transition={{
               delay: 2,
@@ -1038,55 +936,53 @@ function App() {
               //repeat: Infinity,
               smooth: true,
               ease: "easeOut",
-              type: "spring"
+              type: "spring",
             }}
           />
-
-
         </div>
-      )
-
+      );
     }
-
-
-
   } else {
-
     weather = "loading";
     wind = "loading";
     humidity = "loading";
     weatherId = "loading";
     description = "loading";
-
-
   }
-
-
-
 
   if (screenTooBig === true) {
     return (
-      <div className='bigBox'>
-        <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+      <div className="bigBox">
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="public/assets/other/favicon.png"
+        ></link>
         <div class="animation_loading">
           <span class="loader"></span>
           <div class="looking_outside">Your screen is too big!</div>
           <span class="loaderBar"></span>
         </div>
       </div>
-    )
+    );
   } else {
     if (isLoading) {
       return (
-        <div className='bigBox'>
-          <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+        <div className="bigBox">
+          <link
+            rel="icon"
+            type="image/x-icon"
+            href="public/assets/other/favicon.png"
+          ></link>
           <div class="animation_loading">
             <span class="loader"></span>
-            <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
+            <div class="looking_outside">
+              Please give us access to your location so we can provide the best
+              results!
+            </div>
             <span class="loaderBar"></span>
           </div>
         </div>
-        
       );
     }
   }
@@ -1094,11 +990,6 @@ function App() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-
-  
-  
-
 
   //const objectsColors=[objectColor, locationMain, backgroudColor];
 
@@ -1114,96 +1005,174 @@ function App() {
     width: "95%",
     height: "auto",
     zIndex: "-1",
-  }
+  };
 
   if (screenTooBig === true) {
     return (
-      <div className='bigBox'>
+      <div className="bigBox">
+        <link rel="manifest" href="/manifest.json"></link>
         <div class="animation_loading">
           <span class="loader"></span>
           <div class="looking_outside">Your screen is too big!</div>
           <span class="loaderBar"></span>
         </div>
       </div>
-    )
+    );
   } else {
-
     if (userHasGiven === false) {
-      if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
+      if (
+        locationMain === undefined ||
+        locationMain === "" ||
+        locationMain === "Couldn't find location"
+      ) {
         return (
-          <div className='bigBox'>
-            <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+          <div className="bigBox">
+            <link rel="manifest" href="/manifest.json"></link>
+            <link
+              rel="icon"
+              type="image/x-icon"
+              href="public/assets/other/favicon.png"
+            ></link>
             <div class="animation_loading">
               <span class="loader"></span>
-              <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
+              <div class="looking_outside">
+                Please give us access to your location so we can provide the
+                best results!
+              </div>
             </div>
-            
           </div>
         );
       } else {
-
         if (data === null || data === "") {
           return (
-            <div className='bigBox'>
-              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+            <div className="bigBox">
+              <link rel="manifest" href="/manifest.json"></link>
+              <link
+                rel="icon"
+                type="image/x-icon"
+                href="public/assets/other/favicon.png"
+              ></link>
               <div class="animation_loading">
                 <span class="loader"></span>
-                <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
+                <div class="looking_outside">
+                  Please give us access to your location so we can provide the
+                  best results!
+                </div>
               </div>
-              
             </div>
           );
         } else {
-
-
           return (
-            <div className='wholePage'>
-              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
-              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-              {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
-              {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
+            <div className="wholePage">
+              <link rel="manifest" href="/manifest.json"></link>
+              <link
+                rel="icon"
+                type="image/x-icon"
+                href="public/assets/other/favicon.png"
+              ></link>
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+              />
+              {MyComponent(
+                data,
+                weather,
+                wind,
+                humidity,
+                objectColor,
+                description,
+                weatherId,
+                locationMain
+              )}
+              {
+                <LineChart
+                  objectsColors={[
+                    objectColor,
+                    locationMain,
+                    backgroudColor,
+                    moreInfoBackColor,
+                  ]}
+                />
+              }
               {extraArt}
             </div>
           );
-
         }
       }
     } else {
-      if (locationMain === undefined || locationMain === "" || locationMain === "Couldn't find location") {
+      if (
+        locationMain === undefined ||
+        locationMain === "" ||
+        locationMain === "Couldn't find location"
+      ) {
         return (
-          <div className='bigBox'>
-            <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+          <div className="bigBox">
+            <link rel="manifest" href="/manifest.json"></link>
+            <link
+              rel="icon"
+              type="image/x-icon"
+              href="public/assets/other/favicon.png"
+            ></link>
             <div class="animation_loading">
               <span class="loader"></span>
-              <div class="looking_outside">Please give us access to your location so we can provide the best results!</div>
+              <div class="looking_outside">
+                Please give us access to your location so we can provide the
+                best results!
+              </div>
             </div>
             {/* {latitudeMain} */}
             {/* {longitudeMain} */}
-            
           </div>
         );
       } else {
-
         if (data === null || data === "") {
           return (
-            <div className='bigBox'>
-              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
+            <div className="bigBox">
+              <link rel="manifest" href="/manifest.json"></link>
+              <link
+                rel="icon"
+                type="image/x-icon"
+                href="public/assets/other/favicon.png"
+              ></link>
               <div class="animation_loading">
                 <span class="loader"></span>
                 <div class="looking_outside">Looking outside...</div>
               </div>
-              
             </div>
           );
         } else {
-
-
           return (
-            <div className='wholePage'>
-              <link rel="icon" type="image/x-icon" href="public/assets/other/favicon.png"></link>
-              <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-              {MyComponent(data, weather, wind, humidity, objectColor, description, weatherId, locationMain)}
-              {<LineChart objectsColors={[objectColor, locationMain, backgroudColor, moreInfoBackColor]}/>}
+            <div className="wholePage">
+              <link rel="manifest" href="/manifest.json"></link>
+              <link
+                rel="icon"
+                type="image/x-icon"
+                href="public/assets/other/favicon.png"
+              ></link>
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+              />
+              {MyComponent(
+                data,
+                weather,
+                wind,
+                humidity,
+                objectColor,
+                description,
+                weatherId,
+                locationMain
+              )}
+              {
+                <LineChart
+                  objectsColors={[
+                    objectColor,
+                    locationMain,
+                    backgroudColor,
+                    moreInfoBackColor,
+                  ]}
+                />
+              }
               {extraArt}
               {/* {latitudeMain} */}
               {/* {longitudeMain} */}
