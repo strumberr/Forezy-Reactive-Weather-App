@@ -3,12 +3,12 @@
     "name": "Forezy",
     "icons": [
       {
-        "src": "public/assets/other/Group 101.png",
+        "src": "assets/other/Group 101.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "public/assets/other/Group 100.png",
+        "src": "assets/other/Group 100.png",
         "type": "image/png",
         "sizes": "512x512"
       }
@@ -24,19 +24,19 @@
     "description": "Gone are the days of dull and monotonous weather reports. Weethy takes a refreshing approach by presenting weather data in a visually appealing and interactive manner",
     "screenshots": [
       {
-        "src": "public/assets/other/Group 36dsdsdsd.png",
+        "src": "assets/other/Group 36dsdsdsd.png",
         "type": "image/png",
         "sizes": "1042x2111",
         "form_factor": "narrow"
       },
       {
-        "src": "public/assets/other/Group 39sdsdsd.png",
+        "src": "assets/other/Group 39sdsdsd.png",
         "type": "image/jpg",
         "sizes": "1009x2045",
         "form_factor": "wide"
       },
       {
-        "src": "public/assets/other/ssdsdsdsdsd.png",
+        "src": "assets/other/ssdsdsdsdsd.png",
         "type": "image/jpg",
         "sizes": "1043x2112",
         "form_factor": "wide"

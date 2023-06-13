@@ -142,6 +142,7 @@ export default function Home() {
 
   useEffect(() => {
 
+
     if (window.innerWidth >= 767) {
       const runMainThing2 = async () => {
 
@@ -401,7 +402,6 @@ export default function Home() {
     return (
       
       <div className='bigBox'>
-        <link rel="manifest" href="/manifest.json"></link>
         <div class="animation_loading">
           <span class="loader"></span>
           <div class="looking_outside">Looking Outside...</div>
@@ -412,7 +412,6 @@ export default function Home() {
   } else {
     return (
       <div className={styles.whole_page}>
-        <link rel="manifest" href="/manifest.json"></link>
         <Head>
           <title>Forezy</title>
           <meta name="description" content="Where art effortlessly blends with friendly forecasts!" />
