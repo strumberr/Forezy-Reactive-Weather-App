@@ -315,10 +315,10 @@ function App() {
         setUserHasGiven(false);
 
         const runMainThing2 = async () => {
-          fetch("http://ip-api.com/json")
+          fetch("https://api.bigdatacloud.net/data/client-ip")
             .then((response) => response.json())
             .then((data) => {
-              const ipAddress = data.query;
+              const ipAddress = data.ipString;
 
               const apiUrl = `/api/api3?ipAddress=${ipAddress}`;
 
