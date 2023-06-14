@@ -20,11 +20,11 @@ export default function api1handler(req, res) {
 
   const FetchData = async () => {
     try {
-      console.log("api1 fetching")
+
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${tempLat}&lon=${tempLon}&appid=${openWeatherMapApi}&units=metric`
       );
-      console.log("api1 just fetched")
+
       const jsonData = await response.json();
       return res.status(200).json(jsonData).end();
 

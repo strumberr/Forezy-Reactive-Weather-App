@@ -20,7 +20,7 @@ const visualCrossingApKeys = [
         const response = await fetch(
           `https://api.geoapify.com/v1/geocode/reverse?lat=${tempLat}&lon=${tempLon}&apiKey=${geoapifyApi}`
         );
-        console.log("api2 just fetched")
+
         const jsonData = await response.json();
         return res.status(200).json(jsonData).end();
   

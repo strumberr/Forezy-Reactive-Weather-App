@@ -22,7 +22,7 @@ const visualCrossingApKeys = [
         const response = await fetch(
           `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(tempAddress)}&limit=1&appid=${openWeatherMapApi}`
         );
-        console.log("api5 just fetched")
+
         const jsonData = await response.json();
         return res.status(200).json(jsonData).end();
   

@@ -20,7 +20,7 @@ const visualCrossingApKeys = [
         const response = await fetch(
           `https://api.ipdata.co/${ipAddress}?api-key=${ipDataApi}`
         );
-        console.log("api3 just fetched")
+
         const jsonData = await response.json();
         return res.status(200).json(jsonData).end();
   

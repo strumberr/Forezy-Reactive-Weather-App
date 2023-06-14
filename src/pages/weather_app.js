@@ -69,7 +69,7 @@ async function reverseGeocode(latitude, longitude) {
 
     return location;
   } catch (error) {
-    console.error("eeee", error);
+
   }
 }
 
@@ -125,7 +125,7 @@ function App() {
     if (confirm('To add this app to your home screen, tap the "Share" icon and then tap "Add to Home Screen"')) {
       
     } else {
-      console.log('User cancelled home screen install');
+      // console.log('User cancelled home screen install');
     }
   };
 
@@ -201,7 +201,7 @@ function App() {
 
   const isIosDevice = isIOS();
 
-  console.log("isIosDevice", isIosDevice);
+  // console.log("isIosDevice", isIosDevice);
 
 
   function errorCallback() {
@@ -349,7 +349,7 @@ function App() {
 
                   FetchData();
                 })
-                .catch((error) => console.error(error));
+                // .catch((error) => console.error(error));
             });
         };
 

@@ -22,7 +22,7 @@ const visualCrossingApKeys = [
         const response = await fetch(
           `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${tempLocation}?unitGroup=metric&key=${randomVisualCrossingApKeys}&contentType=json`
         );
-        console.log("api4 just fetched")
+
         const jsonData = await response.json();
         return res.status(200).json(jsonData).end();
   
