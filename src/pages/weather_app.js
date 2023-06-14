@@ -122,7 +122,13 @@ function App() {
 
 
   const handleAddToHomeScreen = () => {
-    alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
+    if (confirm('To add this app to your home screen, tap the "Ok" button below and choose "Add to Home Screen".')) {
+      navigator.share({
+        url: "/weather_app"
+      });
+    } else {
+      console.log('User cancelled home screen install');
+    }
   };
 
 
