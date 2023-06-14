@@ -303,6 +303,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={bigDrop}
+                    alt='image'
                     style={extraArtDesign}
                     animate={{
                         y: [-600, 0],
@@ -320,6 +321,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallDrop}
+                    alt='image'
                     style={smallSunDesign}
                     animate={{
                         y: [-300, 0],
@@ -337,6 +339,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallDrop2}
+                    alt='image'
                     style={smallSunDesign2}
                     animate={{
                         y: [-300, 0],
@@ -413,6 +416,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={bigSnow}
+                    alt='image'
                     style={extraArtDesign}
                     animate={{
                         y: [-400, 0],
@@ -431,6 +435,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallSnow}
+                    alt='image'
                     style={smallSunDesign}
                     animate={{
                         y: [-300, 0],
@@ -449,6 +454,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallSnow2}
+                    alt='image'
                     style={smallSunDesign2}
                     animate={{
                         y: [-300, 0],
@@ -514,6 +520,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={bigSun}
+                    alt='image'
                     style={extraArtDesign}
                     animate={{
                         y: [300, 0],
@@ -531,6 +538,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallSun}
+                    alt='image'
                     style={smallSunDesign}
                     animate={{
                         y: [300, 0],
@@ -548,6 +556,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallSun2}
+                    alt='image'
                     style={smallSunDesign2}
                     animate={{
                         y: [300, 0],
@@ -608,6 +617,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={bigCloud}
+                    alt='image'
                     style={extraArtDesign}
                     animate={{
                         y: [300, 0],
@@ -625,6 +635,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallCloud}
+                    alt='image'
                     style={smallSunDesign}
                     animate={{
                         x: [200, 0],
@@ -641,6 +652,7 @@ export function htmlChinkOfCode(weather, wind, humidity, weatherId, description)
 
                 <motion.img
                     src={smallCloud2}
+                    alt='image'
                     style={smallSunDesign2}
                     animate={{
                         x: [-200, 0],

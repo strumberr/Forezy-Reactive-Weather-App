@@ -292,6 +292,7 @@ export default function Home() {
     <div>
       <motion.img
           className={styles.leftMobile}
+          
           src={mobileLeft}
           alt="mobile"
           style={{ y: translateY, scale: scale, x: translateX }}

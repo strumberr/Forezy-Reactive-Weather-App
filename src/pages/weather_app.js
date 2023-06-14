@@ -498,6 +498,7 @@ function App() {
 
           <motion.img
             src={bigThunder}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
@@ -515,6 +516,7 @@ function App() {
 
           <motion.img
             src={smallThunder}
+            alt='image'
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
@@ -533,6 +535,7 @@ function App() {
 
           <motion.img
             src={smallThunder2}
+            alt='image'
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
@@ -619,6 +622,7 @@ function App() {
 
           <motion.img
             src={bigCloud}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
@@ -635,6 +639,7 @@ function App() {
 
           <motion.img
             src={smallDrop}
+            alt='image'
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
@@ -652,6 +657,7 @@ function App() {
 
           <motion.img
             src={smallDrop2}
+            alt='image'
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
@@ -737,6 +743,7 @@ function App() {
 
           <motion.img
             src={bigCloud}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [-600, 0],
@@ -753,6 +760,7 @@ function App() {
 
           <motion.img
             src={smallDrop}
+            alt='image'
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
@@ -770,6 +778,7 @@ function App() {
 
           <motion.img
             src={smallDrop2}
+            alt='image'
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
@@ -844,10 +853,11 @@ function App() {
             <div class="snow layer3"></div>
           </div>
 
-          <img src={snowGround} alt="artPart" style={snowBottom}></img>
+          <img src={snowGround} alt="artPart" style={snowBottom} ></img>
 
           <motion.img
             src={bigSnow}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [-400, 0],
@@ -866,6 +876,7 @@ function App() {
 
           <motion.img
             src={smallSnow}
+            alt='image'
             style={smallSunDesign}
             animate={{
               y: [-300, 0],
@@ -885,6 +896,7 @@ function App() {
 
           <motion.img
             src={smallSnow2}
+            alt='image'
             style={smallSunDesign2}
             animate={{
               y: [-300, 0],
@@ -946,6 +958,7 @@ function App() {
         <div>
           <motion.img
             src={bigSun}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [300, 0],
@@ -999,13 +1012,14 @@ function App() {
       };
 
       const smallCloudDesign = (
-        <img src={smallCloud} style={{ position: "absolute" }}></img>
+        <img src={smallCloud} alt='image' style={{ position: "absolute" }}></img>
       );
 
       extraArt = (
         <div>
           <motion.img
             src={"./assets/cloudy/bigCloud.png"}
+            alt='image'
             style={extraArtDesign}
             animate={{
               y: [300, 0],
@@ -1023,6 +1037,7 @@ function App() {
 
           <motion.img
             src={smallCloud2}
+            alt='image'
             style={smallSunDesign2}
             animate={{
               x: [-200, 0],

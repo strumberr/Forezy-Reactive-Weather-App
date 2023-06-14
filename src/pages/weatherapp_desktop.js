@@ -60,7 +60,7 @@ function App() {
                         </div>
 
                         <div className={styles.innerBox4}>
-                            <img className={styles.imageQR} src={QRCode} />
+                            <img className={styles.imageQR} src={QRCode} alt='image'/>
                         </div>
                     </div>
 
