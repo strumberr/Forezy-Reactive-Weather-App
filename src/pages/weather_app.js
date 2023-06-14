@@ -124,7 +124,7 @@ function App() {
   const handleAddToHomeScreen = () => {
     if (confirm('To add this app to your home screen, tap the "Ok" button below and choose "Add to Home Screen".')) {
       navigator.share({
-        url: "/weather_app"
+        url: "https://forezy.com/weather_app"
       });
     } else {
       console.log('User cancelled home screen install');
