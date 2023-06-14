@@ -135,18 +135,22 @@ export default function Home() {
 
 
   useEffect(() => {
+    console.log("api.ipify useeffect running")
 
 
     if (window.innerWidth >= 767) {
       const runMainThing2 = async () => {
 
-
+        console.log("api.ipify running")
             
-        fetch('https://api.ipify.org?format=json')
+        fetch('http://ip-api.com/json')
         .then(response => response.json())
         .then(data => {
-          const ipAddress = data.ip;
+          console.log("api.ipify done")
+          const ipAddress = data.query;
           const apiUrl = `/api/api3?ipAddress=${ipAddress}`;
+
+          console.log("api.ipify done2")
           
           fetch(apiUrl)
             .then(response => response.json())

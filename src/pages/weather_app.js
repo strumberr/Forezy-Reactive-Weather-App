@@ -120,6 +120,12 @@ function App() {
   const [showAlert, setShowAlert] = useState(true);
 
 
+
+  const handleAddToHomeScreen = () => {
+    alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
+  };
+
+
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -177,9 +183,7 @@ function App() {
   };
 
 
-  const handleAddToHomeScreen = () => {
-    alert('To add this app to your home screen, tap the Share button in your browser and choose "Add to Home Screen".');
-  };
+  
 
 
   function isIOS() {
@@ -307,10 +311,10 @@ function App() {
         setUserHasGiven(false);
 
         const runMainThing2 = async () => {
-          fetch("https://api.ipify.org?format=json")
+          fetch("http://ip-api.com/json")
             .then((response) => response.json())
             .then((data) => {
-              const ipAddress = data.ip;
+              const ipAddress = data.query;
 
               const apiUrl = `/api/api3?ipAddress=${ipAddress}`;
 
@@ -326,7 +330,7 @@ function App() {
                   const FetchData = async () => {
                     try {
                       const response = await fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude2}&lon=${longitude2}&appid=${openWeatherMapApi}&units=metric`
+                        `/api/api1?tempLat=${latitude2}&tempLon=${longitude2}`
                       );
                       const jsonData = await response.json();
 
@@ -1137,7 +1141,7 @@ function App() {
               <div class="looking_outside">
                 Please give us access to your location in your settings! https://support.apple.com/en-us/HT207092
               </div>
-              1
+              
             </div>
           </div>
         );
@@ -1157,7 +1161,6 @@ function App() {
                   Please give us access to your location so we can provide the
                   best results!
                 </div>
-                2
               </div>
             </div>
           );
@@ -1251,7 +1254,6 @@ function App() {
                 Please give us access to your location so we can provide the
                 best results!
               </div>
-              3
             </div>
             {/* {latitudeMain} */}
             {/* {longitudeMain} */}
@@ -1271,7 +1273,6 @@ function App() {
                 <span class="loader"></span>
                 <div class="looking_outside">Looking outside...</div>
               </div>
-              4
             </div>
           );
         } else {
