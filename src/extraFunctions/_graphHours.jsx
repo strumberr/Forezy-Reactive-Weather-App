@@ -17,7 +17,7 @@ function WeatherApi(addressLoc) {
       setIsLoading(true);
 
       try {
-          const response = await fetch(`/api/api4?ipAddress=${addressLoc}`);
+          const response = await fetch(`/api/api4?tempLocation=${addressLoc}`);
           const jsonData = await response.json();
           setData(jsonData);
           setIsLoading(false);

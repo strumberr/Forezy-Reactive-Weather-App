@@ -1093,15 +1093,15 @@ function App() {
             Please give us access to your location in your settings!
             <br></br>
             <br></br>
-            Iphone:
+            <a style={{ display: "flex", justifyContent: "center" }} href="https://support.apple.com/en-us/HT207092">
+              <div className="supportApple">Iphone Troubleshoot</div>
+            </a>
             <br></br>
-            <a style={{ color: "#ADD8E6", marginRight: "5vw", marginLeft: "5vw", wordBreak: "break-all" }} href="https://support.apple.com/en-us/HT207092">https://support.apple.com/en-us/HT207092</a>
             <br></br>
-            <br></br>
-            Android:
-            <br></br>
-            <a style={{ color: "#ADD8E6", marginRight: "5vw", marginLeft: "5vw", wordBreak: "break-all" }} href="https://support.google.com/accounts/answer/6179507?hl=en">https://support.google.com/accounts/answer/6179507?hl=en</a>
             </div>
+            <a style={{ display: "flex", justifyContent: "center" }} href="https://support.google.com/accounts/answer/6179507?hl=en">
+              <div className="supportApple">Iphone Troubleshoot</div>
+            </a>
             <span class="loaderBar"></span>
           </div>
         </div>
