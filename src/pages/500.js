@@ -1,22 +1,17 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
+export default function Custom404() {
+  const router = useRouter();
 
-export default function Custom500() {
+  function handleClick() {
+    router.push('/');
+  }
 
-    useEffect(() => {
-        const router = useRouter();
+  function scheduleRefresh() {
+    setTimeout(handleClick, 0 * 1 * 1000);
+  }
 
-        const handleClick = () => {
-            router.push('/');
-        };
-        
-        function scheduleRefresh() {
-            setTimeout(handleClick, 0 * 1 * 1000); // Refresh after 40 minutes (40 minutes * 60 seconds * 1000 milliseconds)
-        }
+  scheduleRefresh();
 
-        scheduleRefresh();
-    }, []);
-
-    return <h1>500 - Server-side error occurred</h1>
+  return <h1>404 - Page Not Found</h1>;
 }
