@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function Custom500() {
 
     function refreshPage() {

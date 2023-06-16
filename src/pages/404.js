@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function Custom404() {
 
     function refreshPage() {
@@ -11,6 +13,6 @@ export default function Custom404() {
 
       scheduleRefresh();
 
-      
+
     return <h1>404 - Page Not Found</h1>
 }
