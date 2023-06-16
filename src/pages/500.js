@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Custom404() {
-  useEffect(() => {
-    const router = useRouter();
+  const router = useRouter();
 
+  useEffect(() => {
     const handleClick = () => {
       router.push('/');
     };
@@ -14,7 +14,7 @@ export default function Custom404() {
     }
 
     scheduleRefresh();
-  }, []);
+  }, [router]);
 
   return <h1>500 - Server error</h1>;
 }
