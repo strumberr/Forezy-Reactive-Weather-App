@@ -460,6 +460,14 @@
   width: 40vw;
   background-color: #EAC793;
   padding: 2vw;
+  border-radius: 4vw;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2vw;
+
 }
 
 .supportAndroid {
@@ -467,6 +475,27 @@
   width: 40vw;
   background-color: #EAC793;
   padding: 2vw;
+  border-radius: 4vw;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonWrapperTrouble {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
 }
 
 

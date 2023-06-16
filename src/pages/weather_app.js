@@ -1111,18 +1111,18 @@ function App() {
             <span class="loader"></span>
             <div class="looking_outside">
             Please give us access to your location in your settings!
-            <br></br>
-            <br></br>
-            <a style={{ display: "flex", justifyContent: "center" }} href="https://support.apple.com/en-us/HT207092">
-              <div className="supportApple">Iphone Troubleshoot</div>
-            </a>
-            <br></br>
-            <br></br>
             </div>
-            <a style={{ display: "flex", justifyContent: "center" }} href="https://support.google.com/accounts/answer/6179507?hl=en">
-              <div className="supportApple">Iphone Troubleshoot</div>
-            </a>
             <span class="loaderBar"></span>
+            
+            <div className="buttonWrapperTrouble">
+              <a style={{ display: "flex", justifyContent: "center", textAlign: "center", alignContent: "center" }} href="https://support.apple.com/en-us/HT207092">
+                <div className="supportApple">Iphone Troubleshoot</div>
+              </a>
+     
+              <a style={{ display: "flex", justifyContent: "center", textAlign: "center", alignContent: "center" }} href="https://support.google.com/accounts/answer/6179507?hl=en">
+                <div className="supportAndroid" >Android Troubleshoot</div>
+              </a>
+            </div>
           </div>
         </div>
       );
