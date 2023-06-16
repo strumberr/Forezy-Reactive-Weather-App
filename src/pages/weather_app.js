@@ -76,6 +76,8 @@ async function reverseGeocode(latitude, longitude) {
 function App() {
   const router = useRouter();
 
+  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [location, setLocation] = useState("");
@@ -120,6 +122,18 @@ function App() {
   const [showAlert, setShowAlert] = useState(true);
 
 
+  function refreshPage() {
+    // Perform any necessary operations before the refresh
+    window.location.reload();
+  }
+  
+  function scheduleRefresh() {
+    setTimeout(refreshPage, 40 * 60 * 1000); // Refresh after 40 minutes (40 minutes * 60 seconds * 1000 milliseconds)
+  }
+
+  scheduleRefresh();
+
+
 
   const handleAddToHomeScreen = () => {
     if (confirm('To add this app to your home screen, tap the "Share" icon and then tap "Add to Home Screen"')) {
@@ -134,7 +148,13 @@ function App() {
     setShowAlert(false);
   };
 
+
+
+
   useEffect(() => {
+
+
+
     // Check if the app is running in a PWA
     if (window.matchMedia("(display-mode: fullscreen)").matches) {
       setShowAlert(false);
@@ -1249,6 +1269,8 @@ function App() {
                 />
               }
               {extraArt}
+
+
             </div>
           );
         }
@@ -1363,6 +1385,8 @@ function App() {
               {extraArt}
               {/* {latitudeMain} */}
               {/* {longitudeMain} */}
+
+
             </div>
           );
         }
